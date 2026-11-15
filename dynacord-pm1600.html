@@ -1,0 +1,455 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#090d16">
+<title>PRO AUDIO MASTER ACADEMY | PowerMate 1600 Lab</title>
+<style>
+:root{
+  --bg:#090d16;--panel:#111a29;--panel2:#172337;--line:#2b3b52;
+  --red:#e53945;--blue:#38bdf8;--gold:#e5c07b;--green:#22c55e;
+  --text:#edf3fb;--muted:#9aabc0;--radius:16px;
+}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(circle at 15% 0,#19243a 0,transparent 35%),var(--bg);color:var(--text);font-family:Arial,Tahoma,sans-serif;line-height:1.65}
+button,select,input{font:inherit}
+button{cursor:pointer}
+header{position:sticky;top:0;z-index:10;background:#090d16ed;backdrop-filter:blur(12px);border-bottom:1px solid var(--line);padding:12px 4%}
+.top{max-width:1400px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.brand{font-weight:900;letter-spacing:.5px}.brand span{color:var(--red)}
+.actions{display:flex;gap:8px;flex-wrap:wrap}
+.btn{border:1px solid var(--line);background:var(--panel2);color:var(--text);padding:9px 13px;border-radius:10px}
+.btn.primary{background:var(--red);border-color:var(--red);font-weight:bold}
+.btn:hover{filter:brightness(1.15)}
+main{max-width:1400px;margin:24px auto;padding:0 18px 60px}
+.hero{padding:24px;border:1px solid var(--line);border-radius:22px;background:linear-gradient(120deg,#172337,#101827 65%,#29151d);margin-bottom:20px}
+.eyebrow{color:var(--gold);font-size:12px;font-weight:bold;letter-spacing:1.5px}
+h1{font-size:clamp(25px,4vw,42px);line-height:1.2;margin:8px 0}
+h2{font-size:21px;margin:0 0 12px}
+h3{font-size:16px;margin:0 0 8px;color:var(--gold)}
+p{color:var(--muted);margin:6px 0}
+.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:14px}
+.card{background:linear-gradient(145deg,var(--panel),#0e1623);border:1px solid var(--line);border-radius:var(--radius);padding:17px;min-width:0}
+.span12{grid-column:span 12}.span8{grid-column:span 8}.span6{grid-column:span 6}.span4{grid-column:span 4}
+.tabs{display:flex;gap:8px;overflow:auto;padding:4px 0 14px}
+.tab{white-space:nowrap;border:1px solid var(--line);background:var(--panel);color:var(--muted);padding:9px 13px;border-radius:10px}
+.tab.active{background:#34202a;border-color:var(--red);color:white}
+.panel{display:none}.panel.active{display:block}
+.control{margin:12px 0}
+.control label{display:flex;justify-content:space-between;gap:12px;color:#cbd7e6;font-size:13px;margin-bottom:5px}
+input[type=range]{width:100%;accent-color:var(--red)}
+select{width:100%;background:#0a111d;color:var(--text);border:1px solid var(--line);padding:10px;border-radius:9px}
+.value{color:var(--gold);font-variant-numeric:tabular-nums;font-weight:bold}
+.meter{height:14px;background:#05080e;border:1px solid #35445a;border-radius:20px;overflow:hidden}
+.meter>div{height:100%;width:40%;background:linear-gradient(90deg,var(--green),#d6d943 70%,var(--red));transition:width .2s}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.kpi{background:#0b1320;border:1px solid var(--line);padding:10px;border-radius:10px;text-align:center}
+.kpi strong{display:block;font-size:20px;color:var(--blue)}
+.kpi small{color:var(--muted)}
+.signal{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.node{background:#17263a;border:1px solid #39516d;border-radius:9px;padding:8px 10px;font-size:12px}
+.arrow{color:var(--gold)}
+.channel-strip{display:grid;grid-template-columns:repeat(4,minmax(150px,1fr));gap:10px;overflow:auto;padding-bottom:8px}
+.strip{background:linear-gradient(180deg,#202b3a,#111923);border:1px solid #3b4b5f;border-radius:12px;padding:12px;text-align:center}
+.strip .knob{width:34px;height:34px;border-radius:50%;margin:8px auto;background:conic-gradient(var(--gold) 0 120deg,#4b5665 120deg);border:3px solid #0a0e15}
+.strip small{display:block;color:var(--muted)}
+.badge{display:inline-block;padding:3px 8px;border-radius:20px;background:#1d3145;color:var(--blue);font-size:11px}
+.warning{border:1px solid #8c5b22;background:#302416;color:#ffd28b;padding:12px;border-radius:10px}
+.good{border:1px solid #226a42;background:#10281d;color:#a7f3c0;padding:12px;border-radius:10px}
+.lesson{border-bottom:1px solid var(--line);padding:12px 0}
+.lesson:last-child{border:0}
+.quiz-option{display:block;width:100%;text-align:right;margin:8px 0;padding:11px;border:1px solid var(--line);background:#101a29;color:var(--text);border-radius:9px}
+.quiz-option:hover{border-color:var(--blue)}
+#quizResult{margin-top:12px}
+footer{text-align:center;color:var(--muted);padding:25px;font-size:12px}
+.hidden{display:none!important}
+@media(max-width:850px){.span8,.span6,.span4{grid-column:span 12}.channel-strip{grid-template-columns:repeat(2,minmax(145px,1fr))}.kpis{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:420px){main{padding:0 10px}.card{padding:13px}.channel-strip{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+<header>
+ <div class="top">
+  <div class="brand">PRO AUDIO <span>MASTER</span> ACADEMY</div>
+  <div class="actions">
+   <button class="btn" id="langBtn">English</button>
+   <button class="btn" onclick="location.href='index.html'">← الأكاديمية</button>
+  </div>
+ </div>
+</header>
+
+<main>
+<section class="hero">
+ <div class="eyebrow">PROFESSIONAL MIXING CONSOLE TRAINING</div>
+ <h1 data-ar="مختبر Dynacord PowerMate 1600" data-en="Dynacord PowerMate 1600 Lab">مختبر Dynacord PowerMate 1600</h1>
+ <p data-ar="تعلّم تشغيل الـ Power Mixer من استقبال الإشارة إلى المعالجة والمزج والتوصيل." data-en="Learn the complete workflow: input, processing, mixing and system connection.">تعلّم تشغيل الـ Power Mixer من استقبال الإشارة إلى المعالجة والمزج والتوصيل.</p>
+ <div class="actions" style="margin-top:14px">
+  <span class="badge">12 Mono + 4 Stereo</span><span class="badge">Dual FX</span><span class="badge">Internal Stereo Power Amp</span>
+  <span class="badge">Classic PowerMate 1600</span>
+ </div>
+</section>
+
+<div class="warning" style="margin-bottom:18px">
+ <strong>ملاحظة فنية:</strong>
+ هذه محاكاة تعليمية للوظائف ومسارات الإشارة، وليست نسخة رسومية مطابقة للوحة الجهاز ولا تصدر صوتاً فعلياً. تأكد من رقم الإصدار ودليل جهازك قبل التوصيل. لا توصل مخارج السماعات بمداخل Line أو العكس.
+</div>
+
+<nav class="tabs" aria-label="Training sections">
+ <button class="tab active" data-tab="console">لوحة التدريب</button>
+ <button class="tab" data-tab="signal">مسار الإشارة</button>
+ <button class="tab" data-tab="effects">المؤثرات AUX / FX</button>
+ <button class="tab" data-tab="master">Master & Power Amp</button>
+ <button class="tab" data-tab="lessons">الدروس</button>
+ <button class="tab" data-tab="faults">الأعطال</button>
+ <button class="tab" data-tab="exam">الاختبار</button>
+</nav>
+
+<section class="panel active" id="console">
+ <div class="grid">
+  <article class="card span8">
+   <h2>🎚️ محاكاة قناة Mono</h2>
+   <p>غيّر الإعدادات ولاحظ أثرها التعليمي على مستوى الإشارة.</p>
+   <div class="control">
+    <label>اختيار القناة <span class="value" id="channelName">MIC / LINE 1</span></label>
+    <select id="channel">
+     <option value="1">Mono Channel 1</option><option value="2">Mono Channel 2</option>
+     <option value="3">Mono Channel 3</option><option value="4">Mono Channel 4</option>
+     <option value="5">Mono Channel 5</option><option value="6">Mono Channel 6</option>
+     <option value="7">Mono Channel 7</option><option value="8">Mono Channel 8</option>
+     <option value="9">Mono Channel 9</option><option value="10">Mono Channel 10</option>
+     <option value="11">Mono Channel 11</option><option value="12">Mono Channel 12</option>
+    </select>
+   </div>
+   <div class="control"><label>Input Gain <span class="value" id="gainVal">0 dB</span></label><input id="gain" type="range" min="-10" max="50" value="0"></div>
+   <div class="control"><label>Low EQ <span class="value" id="lowVal">0 dB</span></label><input id="low" type="range" min="-15" max="15" value="0"></div>
+   <div class="control"><label>Mid EQ <span class="value" id="midVal">0 dB</span></label><input id="mid" type="range" min="-15" max="15" value="0"></div>
+   <div class="control"><label>High EQ <span class="value" id="highVal">0 dB</span></label><input id="high" type="range" min="-15" max="15" value="0"></div>
+   <div class="control"><label>AUX / FX 1 <span class="value" id="fx1Val">0</span></label><input id="fx1" type="range" min="0" max="100" value="0"></div>
+   <div class="control"><label>AUX / FX 2 <span class="value" id="fx2Val">0</span></label><input id="fx2" type="range" min="0" max="100" value="0"></div>
+   <div class="control"><label>Channel Fader <span class="value" id="faderVal">0 dB</span></label><input id="fader" type="range" min="-60" max="10" value="0"></div>
+   <div class="control"><label>Pan <span class="value" id="panVal">Center</span></label><input id="pan" type="range" min="-100" max="100" value="0"></div>
+   <div class="actions">
+    <button class="btn" id="muteBtn">Mute: OFF</button>
+    <button class="btn" id="pflBtn">PFL: OFF</button>
+    <button class="btn" id="loCutBtn">LO CUT: OFF</button>
+    <button class="btn" id="resetBtn">إعادة ضبط القناة</button>
+   </div>
+  </article>
+  <article class="card span4">
+   <h2>📊 مراقبة الإشارة</h2>
+   <div class="kpis">
+    <div class="kpi"><strong id="level">42%</strong><small>Signal Model</small></div>
+    <div class="kpi"><strong id="peak">SAFE</strong><small>Peak Status</small></div>
+    <div class="kpi"><strong id="route">L + R</strong><small>Routing</small></div>
+    <div class="kpi"><strong id="faderState">0 dB</strong><small>Fader</small></div>
+   </div>
+   <h3 style="margin-top:20px">Signal / Peak</h3>
+   <div class="meter"><div id="meterBar"></div></div>
+   <div id="diagnosis" class="good" style="margin-top:14px">الإشارة ضمن النطاق التعليمي الطبيعي.</div>
+   <h3 style="margin-top:18px">ماذا يحدث؟</h3>
+   <p id="explain">ابدأ بضبط Gain مع مراقبة مؤشر Signal/Peak، ثم ارفع Fader تدريجياً.</p>
+  </article>
+  <article class="card span12">
+   <h2>مخطط أقسام الجهاز</h2>
+   <div class="channel-strip">
+    <div class="strip"><div class="knob"></div><b>INPUT</b><small>MIC / LINE / INSERT</small></div>
+    <div class="strip"><div class="knob"></div><b>GAIN & FILTER</b><small>Gain / Lo Cut / Voicing</small></div>
+    <div class="strip"><div class="knob"></div><b>CHANNEL EQ</b><small>Low / Mid / High</small></div>
+    <div class="strip"><div class="knob"></div><b>AUX / FX</b><small>FX1 / FX2 / AUX3</small></div>
+    <div class="strip"><div class="knob"></div><b>PAN / PFL</b><small>Pan / Solo Monitoring</small></div>
+    <div class="strip"><div class="knob"></div><b>CHANNEL FADER</b><small>Level to Main Mix</small></div>
+    <div class="strip"><div class="knob"></div><b>MASTER</b><small>L/R / Mono / EQ</small></div>
+    <div class="strip"><div class="knob"></div><b>POWER AMP</b><small>Internal Speaker Outputs</small></div>
+   </div>
+  </article>
+ </div>
+</section>
+
+<section class="panel" id="signal">
+ <div class="grid">
+  <article class="card span12">
+   <h2>مسار الإشارة Signal Flow</h2>
+   <p>افهم ترتيب معالجة الإشارة في قناة المونو بصورة مبسطة.</p>
+   <div class="signal" style="margin:20px 0">
+    <span class="node">MIC / LINE INPUT</span><span class="arrow">←</span>
+    <span class="node">GAIN</span><span class="arrow">←</span>
+    <span class="node">LO CUT / VOICING</span><span class="arrow">←</span>
+    <span class="node">EQ</span><span class="arrow">←</span>
+    <span class="node">AUX / FX SEND</span><span class="arrow">←</span>
+    <span class="node">PAN</span><span class="arrow">←</span>
+    <span class="node">FADER</span><span class="arrow">←</span>
+    <span class="node">MAIN L/R</span>
+   </div>
+   <div class="lesson"><h3>1. Input</h3><p>تبدأ الإشارة من مدخل الميكروفون أو الخط. اختر نوع المصدر والتوصيل الصحيح.</p></div>
+   <div class="lesson"><h3>2. Gain</h3><p>يضبط حساسية مرحلة الإدخال. لا تستخدمه كبديل عن رفع مستوى الصوت النهائي.</p></div>
+   <div class="lesson"><h3>3. Filter & EQ</h3><p>استخدم مرشح القطع المنخفض لتقليل الاهتزازات والضوضاء المنخفضة عند الحاجة، ثم عالج النغمة باعتدال.</p></div>
+   <div class="lesson"><h3>4. AUX / FX</h3><p>ترسل نسخة من الإشارة إلى مسار مساعد أو وحدة مؤثرات حسب تصميم الجهاز.</p></div>
+   <div class="lesson"><h3>5. Pan & Fader</h3><p>يحدد Pan موضع الإشارة في الصورة الستيريو، ويحدد Fader مستواها في المزيج.</p></div>
+   <div class="lesson"><h3>6. Main</h3><p>تصل الإشارة إلى المزيج الرئيسي ثم إلى مخارج النظام بحسب التوصيل المختار.</p></div>
+  </article>
+ </div>
+</section>
+
+<section class="panel" id="effects">
+ <div class="grid">
+  <article class="card span6">
+   <h2>🎛️ FX 1</h2>
+   <p>وحدة المؤثرات الرقمية الأولى.</p>
+   <div class="control"><label>Program <span class="value" id="program1Val">05</span></label>
+    <select id="program1">
+     <option value="5">05 - Reverb</option><option value="15">15 - Hall</option>
+     <option value="25">25 - Echo</option><option value="35">35 - Chorus</option>
+     <option value="45">45 - Delay</option><option value="55">55 - Special</option>
+    </select>
+   </div>
+   <div class="control"><label>FX Return <span class="value" id="return1Val">30%</span></label><input id="return1" type="range" min="0" max="100" value="30"></div>
+   <button class="btn primary" id="fx1On">FX 1: ON</button>
+  </article>
+  <article class="card span6">
+   <h2>🎛️ FX 2</h2>
+   <p>وحدة مؤثرات ثانية يمكن استخدامها بمعالجة مختلفة.</p>
+   <div class="control"><label>Program <span class="value" id="program2Val">55</span></label>
+    <select id="program2">
+     <option value="5">05 - Reverb</option><option value="15">15 - Hall</option>
+     <option value="25">25 - Echo</option><option value="35">35 - Chorus</option>
+     <option value="45">45 - Delay</option><option value="55">55 - Special</option>
+    </select>
+   </div>
+   <div class="control"><label>FX Return <span class="value" id="return2Val">30%</span></label><input id="return2" type="range" min="0" max="100" value="30"></div>
+   <button class="btn primary" id="fx2On">FX 2: ON</button>
+  </article>
+  <article class="card span12">
+   <h2>AUX 3 / Monitor</h2>
+   <p>مسار AUX3 يستخدم عادةً لإرسال مزيج مراقبة إلى Stage Monitor أو مضخم خارجي، وفق إعداد الجهاز.</p>
+   <div class="control"><label>AUX 3 Send <span class="value" id="aux3Val">35%</span></label><input id="aux3" type="range" min="0" max="100" value="35"></div>
+   <div class="control"><label>AUX 3 Master <span class="value" id="aux3MasterVal">50%</span></label><input id="aux3Master" type="range" min="0" max="100" value="50"></div>
+   <div class="warning">لا تفترض أن AUX3 يطابق FX1/FX2 في نقطة الإرسال أو السلوك. راجع دليل الإصدار الأصلي، وانتبه إلى إعداد POST عند استخدامه.</div>
+  </article>
+ </div>
+</section>
+
+<section class="panel" id="master">
+ <div class="grid">
+  <article class="card span6">
+   <h2>🎚️ Main Master</h2>
+   <div class="control"><label>Master L <span class="value" id="masterLVal">-10 dB</span></label><input id="masterL" type="range" min="-60" max="10" value="-10"></div>
+   <div class="control"><label>Master R <span class="value" id="masterRVal">-10 dB</span></label><input id="masterR" type="range" min="-60" max="10" value="-10"></div>
+   <div class="control"><label>Mono Out <span class="value" id="monoVal">-10 dB</span></label><input id="mono" type="range" min="-60" max="10" value="-10"></div>
+   <div class="control"><label>Phones Level <span class="value" id="phonesVal">20%</span></label><input id="phones" type="range" min="0" max="100" value="20"></div>
+  </article>
+  <article class="card span6">
+   <h2>🎚️ Graphic EQ - 7 Band</h2>
+   <p>تدريب على تصحيح النغمة العامة. هذه قيم تعليمية وليست استجابة صوتية محسوبة.</p>
+   <div id="graphicControls"></div>
+   <button class="btn" id="eqFlat">إعادة EQ إلى Flat</button>
+  </article>
+  <article class="card span12">
+   <h2>⚡ Internal Stereo Power Amplifier</h2>
+   <p>المضخم الداخلي يقود سماعات سلبية من مخارج Speaker المخصصة. لا تستخدم كابلات إشارة عادية لهذه المخارج.</p>
+   <div class="grid">
+    <div class="card span6">
+     <h3>Amplifier Channel A / Left</h3>
+     <div class="control"><label>Load setting (تعليمي) <span class="value" id="loadAVal">8 Ω</span></label>
+      <select id="loadA"><option value="8">8 Ω</option><option value="4">4 Ω</option><option value="2.66">2.66 Ω</option></select>
+     </div>
+     <div class="meter"><div id="ampA" style="width:35%"></div></div>
+    </div>
+    <div class="card span6">
+     <h3>Amplifier Channel B / Right</h3>
+     <div class="control"><label>Load setting (تعليمي) <span class="value" id="loadBVal">8 Ω</span></label>
+      <select id="loadB"><option value="8">8 Ω</option><option value="4">4 Ω</option><option value="2.66">2.66 Ω</option></select>
+     </div>
+     <div class="meter"><div id="ampB" style="width:35%"></div></div>
+    </div>
+   </div>
+   <div class="warning" style="margin-top:12px">
+    لا تعتمد على اختيار الحمل هنا لتقرير توصيل حقيقي. احسب الممانعة الكلية للسماعات المتصلة على التوازي أو التوالي، وتحقق من الحد الأدنى المسموح به في دليل جهازك. لا توصل أو تفصل السماعات والجهاز يعمل.
+   </div>
+  </article>
+ </div>
+</section>
+
+<section class="panel" id="lessons">
+ <div class="grid">
+  <article class="card span12">
+   <h2>المسار التعليمي المقترح</h2>
+   <div class="lesson"><h3>الدرس 1 — التعرف على PowerMate 1600</h3><p>الفرق بين Power Mixer والمكسر العادي، أقسام الجهاز، المداخل والمخارج.</p><span class="badge">مبتدئ</span></div>
+   <div class="lesson"><h3>الدرس 2 — Mono Input</h3><p>MIC / LINE / INSERT / GAIN / LO CUT / VOICING FILTER.</p><span class="badge">مبتدئ</span></div>
+   <div class="lesson"><h3>الدرس 3 — Equalization</h3><p>Low / Mid / High EQ، تحديد الترددات المزعجة، وتجنب المعالجة المبالغ فيها.</p><span class="badge">متوسط</span></div>
+   <div class="lesson"><h3>الدرس 4 — AUX وFX</h3><p>فهم FX1 وFX2 وAUX3، الفرق بين الإرسال والعودة، ومزج المؤثرات.</p><span class="badge">متوسط</span></div>
+   <div class="lesson"><h3>الدرس 5 — Stereo Inputs</h3><p>توصيل الكيبورد ومصادر Line الستيريو، Gain MIC وLine Trim وBalance.</p><span class="badge">متوسط</span></div>
+   <div class="lesson"><h3>الدرس 6 — Master Section</h3><p>Master L/R وMono Out وPhones وPFL وGraphic EQ وStandby.</p><span class="badge">متقدم</span></div>
+   <div class="lesson"><h3>الدرس 7 — Power Amplifier</h3><p>مخارج القدرة، كابلات السماعات، حساب الممانعة، والتوصيل الآمن.</p><span class="badge">متقدم</span></div>
+   <div class="lesson"><h3>الدرس 8 — تشغيل فعالية كاملة</h3><p>تجهيز الميكروفونات، Sound Check، Monitor Mix، Main Mix، وإيقاف النظام.</p><span class="badge">مشروع عملي</span></div>
+  </article>
+ </div>
+</section>
+
+<section class="panel" id="faults">
+ <div class="grid">
+  <article class="card span12">
+   <h2>مختبر تشخيص الأعطال</h2>
+   <p>اختر الحالة، ثم اقرأ خطوات التشخيص بالترتيب قبل تغيير أي إعداد.</p>
+   <div class="control">
+    <label>الحالة</label>
+    <select id="faultSelect">
+     <option value="silent">لا يوجد صوت في القناة</option>
+     <option value="distort">الصوت مشوه / Clip</option>
+     <option value="feedback">صفير Feedback</option>
+     <option value="monitor">لا يوجد صوت في Monitor</option>
+     <option value="fx">المؤثر لا يظهر في المزيج</option>
+     <option value="speaker">لا يوجد صوت من السماعات السلبية</option>
+    </select>
+   </div>
+   <button class="btn primary" id="diagnoseBtn">ابدأ التشخيص</button>
+   <div id="faultAnswer" class="card" style="margin-top:14px">
+    اختر المشكلة ثم اضغط ابدأ التشخيص.
+   </div>
+  </article>
+ </div>
+</section>
+
+<section class="panel" id="exam">
+ <div class="grid">
+  <article class="card span8">
+   <h2>اختبار PowerMate 1600</h2>
+   <p>اختبر فهمك للتشغيل الآمن ومسار الإشارة.</p>
+   <div id="question"></div>
+   <div id="quizResult"></div>
+   <button class="btn primary" id="nextQuestion" style="margin-top:12px">السؤال التالي</button>
+  </article>
+  <article class="card span4">
+   <h2>نتيجة المتدرب</h2>
+   <div class="kpi"><strong id="score">0</strong><small>الإجابات الصحيحة</small></div>
+   <p id="progressText">ابدأ الاختبار لتسجيل نتيجتك.</p>
+   <button class="btn" id="restartQuiz">إعادة الاختبار</button>
+  </article>
+ </div>
+</section>
+</main>
+
+<footer>
+ PRO AUDIO MASTER ACADEMY · Educational simulator · Verify all real-world connections with the exact model's official manual.
+</footer>
+
+<script>
+const $=id=>document.getElementById(id);
+let lang="ar", muted=false, pfl=false, loCut=false, fx1Enabled=true, fx2Enabled=true;
+const tabs=[...document.querySelectorAll(".tab")];
+tabs.forEach(btn=>btn.addEventListener("click",()=>{
+ tabs.forEach(x=>x.classList.toggle("active",x===btn));
+ document.querySelectorAll(".panel").forEach(p=>p.classList.toggle("active",p.id===btn.dataset.tab));
+}));
+
+$("langBtn").addEventListener("click",()=>{
+ lang=lang==="ar"?"en":"ar";
+ document.documentElement.lang=lang;
+ document.documentElement.dir=lang==="ar"?"rtl":"ltr";
+ $("langBtn").textContent=lang==="ar"?"English":"العربية";
+ document.querySelectorAll("[data-ar]").forEach(el=>el.textContent=el.dataset[lang]);
+});
+
+const sliders=["gain","low","mid","high","fx1","fx2","fader","pan"];
+function updateChannel(){
+ const v={};sliders.forEach(id=>v[id]=Number($(id).value));
+ $("channelName").textContent="MIC / LINE "+$("channel").value;
+ $("gainVal").textContent=v.gain+" dB";
+ ["low","mid","high"].forEach(id=>$(id+"Val").textContent=v[id]+" dB");
+ ["fx1","fx2"].forEach(id=>$(id+"Val").textContent=v[id]);
+ $("faderVal").textContent=v.fader+" dB";
+ $("panVal").textContent=v.pan===0?"Center":(v.pan<0?"L "+Math.abs(v.pan):"R "+v.pan);
+ $("faderState").textContent=v.fader+" dB";
+ $("route").textContent=v.pan===0?"L + R":(v.pan<0?"LEFT":"RIGHT");
+ // Illustrative model only: not a dBFS or voltage calculation.
+ let level=42+(v.gain*0.72)+(v.fader*0.55)+((v.low+v.mid+v.high)*0.35);
+ if(loCut)level-=2;if(muted)level=0;
+ level=Math.max(0,Math.min(100,Math.round(level)));
+ $("level").textContent=level+"%";$("meterBar").style.width=level+"%";
+ $("peak").textContent=level>88?"HIGH":level>0?"SAFE":"MUTE";
+ $("diagnosis").className=level>88?"warning":"good";
+ $("diagnosis").textContent=level>88?"مستوى مرتفع في النموذج: راجع Gain وFader لتجنب التشويه.":level===0?"القناة مكتومة أو لا توجد إشارة في النموذج.":"الإشارة ضمن النطاق التعليمي الطبيعي.";
+ $("explain").textContent=muted?"القناة في وضع Mute.":pfl?"PFL يتيح الاستماع المسبق للقناة ومراقبة مستواها دون الاعتماد على المزيج الرئيسي.":loCut?"LO CUT مفعل: يقلل المكونات المنخفضة جداً وفق خصائص الدائرة.":"اضبط Gain أولاً، ثم EQ، ثم الإرساليات، وبعدها Fader.";
+}
+sliders.forEach(id=>$(id).addEventListener("input",updateChannel));
+$("channel").addEventListener("change",updateChannel);
+$("muteBtn").addEventListener("click",()=>{muted=!muted;$("muteBtn").textContent="Mute: "+(muted?"ON":"OFF");updateChannel()});
+$("pflBtn").addEventListener("click",()=>{pfl=!pfl;$("pflBtn").textContent="PFL: "+(pfl?"ON":"OFF");updateChannel()});
+$("loCutBtn").addEventListener("click",()=>{loCut=!loCut;$("loCutBtn").textContent="LO CUT: "+(loCut?"ON":"OFF");updateChannel()});
+$("resetBtn").addEventListener("click",()=>{
+ const defaults={gain:0,low:0,mid:0,high:0,fx1:0,fx2:0,fader:0,pan:0};
+ Object.entries(defaults).forEach(([id,val])=>$(id).value=val);
+ muted=false;pfl=false;loCut=false;
+ $("muteBtn").textContent="Mute: OFF";$("pflBtn").textContent="PFL: OFF";$("loCutBtn").textContent="LO CUT: OFF";
+ updateChannel();
+});
+
+["return1","return2","aux3","aux3Master","masterL","masterR","mono","phones"].forEach(id=>{
+ $(id).addEventListener("input",()=>{
+  const suffix=["return1","return2","aux3","aux3Master","phones"].includes(id)?"%":" dB";
+  $(id+"Val").textContent=$(id).value+suffix;
+ });
+});
+["program1","program2"].forEach(id=>$(id).addEventListener("change",()=>$(id+"Val").textContent=String($(id).value).padStart(2,"0")));
+$("fx1On").addEventListener("click",()=>{fx1Enabled=!fx1Enabled;$("fx1On").textContent="FX 1: "+(fx1Enabled?"ON":"OFF")});
+$("fx2On").addEventListener("click",()=>{fx2Enabled=!fx2Enabled;$("fx2On").textContent="FX 2: "+(fx2Enabled?"ON":"OFF")});
+
+const bands=["63 Hz","160 Hz","400 Hz","1 kHz","2.5 kHz","6.3 kHz","12 kHz"];
+$("graphicControls").innerHTML=bands.map((b,i)=>`<div class="control"><label>${b}<span class="value" id="bandVal${i}">0 dB</span></label><input type="range" min="-12" max="12" value="0" id="band${i}"></div>`).join("");
+bands.forEach((b,i)=>$("band"+i).addEventListener("input",()=> $("bandVal"+i).textContent=$("band"+i).value+" dB"));
+$("eqFlat").addEventListener("click",()=>bands.forEach((b,i)=>{$("band"+i).value=0;$("bandVal"+i).textContent="0 dB"}));
+
+["loadA","loadB"].forEach(id=>$(id).addEventListener("change",()=>{
+ $(id+"Val").textContent=$(id).value+" Ω";
+ const width=$(id).value==="8"?35:$(id).value==="4"?55:75;
+ $(id==="loadA"?"ampA":"ampB").style.width=width+"%";
+}));
+
+const faultData={
+ silent:["لا يوجد صوت في القناة",["تحقق من مصدر الإشارة والكابل والميكروفون.","تأكد من اختيار MIC أو LINE المناسب.","افحص Mute وFader وGain وPan.","راقب Signal/Peak وجرّب PFL.","افحص التوصيلات ومخارج النظام بعد التأكد من سلامة المصدر."]],
+ distort:["الصوت مشوه / Clip",["اخفض Gain تدريجياً وراقب Peak.","تأكد أن المصدر لا يرسل مستوى أعلى من قدرة المدخل.","راجع EQ؛ التعزيز الكبير قد يرفع المستوى.","افحص الكابلات والمصدر ومراحل المعالجة اللاحقة.","لا تعالج التشويه برفع Master."]],
+ feedback:["صفير Feedback",["اخفض مستوى الميكروفون أو Monitor مؤقتاً.","أبعد الميكروفون عن السماعة وغيّر اتجاهه.","لا تجعل الميكروفون أمام السماعة أو خلفها بطريقة تسبب التقاط الصوت.","افحص الترددات الرنانة وخفّضها باعتدال باستخدام EQ.","ارفع المستوى تدريجياً بعد معالجة السبب." ]],
+ monitor:["لا يوجد صوت في Monitor",["تحقق من إرسال AUX3 من القناة المطلوبة.","تحقق من AUX3 Master ومستوى خرج الإرسال.","افحص الكابل ومدخل مضخم المراقبة أو السماعة النشطة.","تأكد من إعداد POST/مسار الإرسال وفق الاستخدام.","تحقق من مصدر التغذية ومستوى السماعة." ]],
+ fx:["المؤثر لا يظهر في المزيج",["تأكد من إرسال القناة إلى FX1 أو FX2.","تحقق من أن وحدة المؤثر مفعلة.","ارفع FX Return تدريجياً.","افحص اختيار البرنامج ومستوى الإشارة الداخلة.","تأكد من عدم وجود كتم أو مشكلة في مسار العودة." ]],
+ speaker:["لا يوجد صوت من السماعات السلبية",["أوقف الجهاز قبل فحص أو تغيير كابلات السماعات.","تحقق من استخدام مخارج Speaker المخصصة لا مخارج Line.","افحص كابل Speakon وموصلاته.","تحقق من Standby وحالة مضخم القدرة ومؤشر الحماية.","تحقق من الممانعة الكلية والحمل المسموح به في الدليل." ]]
+};
+$("diagnoseBtn").addEventListener("click",()=>{
+ const [title,steps]=faultData[$("faultSelect").value];
+ $("faultAnswer").innerHTML="<h3>"+title+"</h3><ol>"+steps.map(s=>"<li>"+s+"</li>").join("")+"</ol><p class='warning'>اتبع تعليمات السلامة ودليل الجهاز. لا تفتح الجهاز أو تعمل داخل قسم القدرة دون فني مؤهل.</p>";
+});
+
+const questions=[
+ {q:"ما الوظيفة الأساسية لـ Gain؟",a:["ضبط حساسية مرحلة الإدخال","رفع قدرة مضخم السماعات","تغيير Pan"],c:0,e:"Gain يضبط حساسية مرحلة الإدخال."},
+ {q:"ما الاستخدام الشائع لمسار AUX3؟",a:["إرسال Monitor","تغذية مدخل الميكروفون","تغيير تردد العينة"],c:0,e:"يستخدم AUX3 عادةً لإرسال مزيج مراقبة أو إرسال مساعد وفق الإعداد."},
+ {q:"ماذا تفعل عند ظهور Peak باستمرار؟",a:["رفع Gain أكثر","خفض مستوى الإدخال والتحقق من المصدر","رفع Master"],c:1,e:"الـPeak المستمر يستدعي مراجعة Gain ومستوى المصدر."},
+ {q:"هل يجوز توصيل مخرج Speaker إلى مدخل Line؟",a:["نعم دائماً","لا، فهما مستويان ووظيفتان مختلفتان","نعم باستخدام أي محول"],c:1,e:"مخارج القدرة ليست مخارج Line."},
+ {q:"ما وظيفة PFL؟",a:["الاستماع المسبق للقناة ومراقبتها","تشغيل مضخم القدرة","تفعيل Phantom تلقائياً"],c:0,e:"PFL يتيح فحص الإشارة قبل الاعتماد على المزيج الرئيسي."},
+ {q:"ما الإجراء الأول عند Feedback؟",a:["زيادة مستوى الميكروفون","خفض المستوى وإبعاد الميكروفون عن السماعة","زيادة Reverb"],c:1,e:"ابدأ بخفض المستوى وتصحيح موضع الميكروفون والسماعة."},
+ {q:"ما الذي يجب فحصه قبل توصيل سماعات سلبية؟",a:["لون السماعة فقط","الممانعة والكابلات ومخارج القدرة","مستوى Phones"],c:1,e:"تحقق من الحمل الكلي والحدود المحددة في دليل الجهاز."}
+];
+let qi=0,score=0,answered=false;
+function showQuestion(){
+ answered=false;const q=questions[qi];
+ $("question").innerHTML="<h3>"+(qi+1)+" / "+questions.length+"</h3><h2>"+q.q+"</h2>"+q.a.map((a,i)=>`<button class="quiz-option" data-answer="${i}">${a}</button>`).join("");
+ $("quizResult").textContent="";
+ document.querySelectorAll(".quiz-option").forEach(btn=>btn.addEventListener("click",()=>{
+  if(answered)return;answered=true;
+  const correct=Number(btn.dataset.answer)===q.c;if(correct)score++;
+  $("score").textContent=score;
+  $("quizResult").className=correct?"good":"warning";
+  $("quizResult").textContent=(correct?"إجابة صحيحة. ":"ليست الإجابة الصحيحة. ")+q.e;
+  $("progressText").textContent="أجبت عن "+(qi+1)+" من "+questions.length+" أسئلة.";
+ }));
+}
+$("nextQuestion").addEventListener("click",()=>{
+ if(!answered){$("quizResult").className="warning";$("quizResult").textContent="اختر إجابة أولاً.";return}
+ if(qi<questions.length-1){qi++;showQuestion()}
+ else{$("question").innerHTML="<h2>انتهى الاختبار</h2><p>نتيجتك: "+score+" من "+questions.length+"</p>";$("nextQuestion").disabled=true}
+});
+$("restartQuiz").addEventListener("click",()=>{qi=0;score=0;$("score").textContent="0";$("nextQuestion").disabled=false;showQuestion()});
+
+updateChannel();showQuestion();
+</script>
+</body>
+</html>
