@@ -1,0 +1,526 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#10131b">
+<title>DYNACORD PROFESSIONAL TRAINING LAB</title>
+<style>
+:root{
+  --bg:#0b0e14;--panel:#151c28;--panel2:#202a39;
+  --line:#344155;--red:#e60025;--gold:#e5c07b;
+  --blue:#38bdf8;--green:#22c55e;--text:#edf2f7;
+  --muted:#a4b0c0;--warning:#f59e0b;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);
+font-family:Arial,Tahoma,sans-serif;line-height:1.65}
+button,select,input{font:inherit}
+button{cursor:pointer}
+header{
+ position:sticky;top:0;z-index:5;background:#111824;
+ border-bottom:1px solid var(--line);padding:13px 20px;
+ display:flex;justify-content:space-between;align-items:center;gap:12px
+}
+.brand{display:flex;gap:12px;align-items:center}
+.logo{width:42px;height:42px;border-radius:11px;background:var(--red);
+display:grid;place-items:center;font-weight:bold}
+h1{font-size:15px;margin:0}
+header small{color:var(--muted);font-size:11px}
+main{max-width:1350px;margin:auto;padding:22px}
+.hero{padding:24px;border:1px solid var(--line);border-radius:16px;
+background:radial-gradient(circle at 90% 0,#27364c,transparent 45%),#151c28}
+.hero h2{font-size:clamp(23px,4vw,34px);margin:8px 0}
+.hero p{color:var(--muted);max-width:850px}
+.eyebrow{color:var(--gold);font-size:12px;font-weight:bold}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px}
+.two{display:grid;grid-template-columns:1.2fr .8fr;gap:14px}
+.card{background:var(--panel);border:1px solid var(--line);
+border-radius:13px;padding:17px;min-width:0}
+.card h3{margin:0 0 12px;font-size:16px}
+.muted{color:var(--muted);font-size:13px}
+.toolbar{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.btn{padding:9px 13px;border-radius:9px;border:1px solid var(--line);
+background:var(--panel2);color:var(--text)}
+.btn.primary{background:var(--red);border-color:var(--red)}
+.btn.gold{background:var(--gold);color:#171717;border-color:var(--gold)}
+select{background:var(--panel2);color:var(--text);
+border:1px solid var(--line);padding:10px;border-radius:8px;max-width:100%}
+label{display:block;color:var(--muted);font-size:12px;margin-bottom:5px}
+.field{margin:13px 0}
+input[type=range]{width:100%;accent-color:var(--gold)}
+.value{float:left;color:var(--gold);font-weight:bold}
+.pill{display:inline-block;padding:4px 9px;border-radius:30px;
+background:#26354a;color:var(--blue);font-size:11px}
+.warning{border-right:4px solid var(--warning);background:#2b2418;
+padding:13px;border-radius:8px;font-size:13px;margin:12px 0}
+.good{border-right:4px solid var(--green);background:#14271e;
+padding:13px;border-radius:8px;font-size:13px;margin:12px 0}
+.flow{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin:12px 0}
+.node{background:#27364a;border:1px solid #40516a;border-radius:8px;
+padding:9px 12px;font-size:12px}
+.arrow{color:var(--gold)}
+.meter{height:16px;background:#080b10;border-radius:5px;overflow:hidden}
+.meter>div{height:100%;width:0%;transition:width .2s;
+background:linear-gradient(90deg,#22c55e 0%,#eab308 70%,#ef4444 100%)}
+.channel{border:1px solid #3a485c;background:#111824;
+border-radius:12px;padding:14px}
+.channel h4{text-align:center;margin:0 0 8px}
+.knob{height:57px;width:57px;border-radius:50%;
+border:5px solid #46546a;border-top-color:var(--gold);
+display:grid;place-items:center;margin:8px auto;font-size:12px}
+.control{margin:13px 0}
+.control label{display:flex;justify-content:space-between;gap:8px}
+.control label b{color:var(--gold)}
+.section{margin:23px 0}
+.section-title{display:flex;justify-content:space-between;align-items:center;
+gap:10px;margin-bottom:12px}
+.section-title h3{margin:0}
+.lesson{padding:13px;border:1px solid var(--line);
+border-radius:10px;background:#111824;margin:9px 0}
+.lesson strong{display:block}
+.lesson p{margin:5px 0;color:var(--muted);font-size:13px}
+.option{width:100%;text-align:start;margin:6px 0;padding:11px;
+border:1px solid var(--line);border-radius:8px;
+background:var(--panel2);color:var(--text)}
+.option.selected{border-color:var(--blue)}
+.option.correct{border-color:var(--green)}
+.option.wrong{border-color:var(--red)}
+.small{font-size:11px;color:var(--muted)}
+.hidden{display:none!important}
+footer{text-align:center;padding:20px;color:var(--muted);
+border-top:1px solid var(--line);font-size:12px}
+@media(max-width:850px){.grid{grid-template-columns:repeat(2,1fr)}
+.two{grid-template-columns:1fr}}
+@media(max-width:550px){main{padding:12px}
+.grid{grid-template-columns:1fr}
+header{padding:10px}
+header h1{font-size:12px}}
+</style>
+</head>
+<body>
+<header>
+ <div class="brand">
+  <div class="logo">D</div>
+  <div>
+   <h1>DYNACORD PROFESSIONAL TRAINING LAB</h1>
+   <small>PRO AUDIO MASTER ACADEMY</small>
+  </div>
+ </div>
+ <div class="toolbar">
+  <button class="btn" onclick="setLang()"><span id="langBtn">EN</span></button>
+  <a href="index.html"><button class="btn">⌂ <span id="homeText">الأكاديمية</span></button></a>
+ </div>
+</header>
+
+<main>
+<section class="hero">
+ <div class="eyebrow">PROFESSIONAL MIXER TRAINING</div>
+ <h2 id="heroTitle">مختبر تدريب مكسرات Dynacord</h2>
+ <p id="heroDesc">تعلّم بنية المكسر، وإدارة الإشارة، وضبط القنوات، والتوجيه، ومبادئ التشغيل الآمن. اختر عائلة الجهاز لتظهر لك المسارات التدريبية المناسبة.</p>
+ <div class="toolbar">
+  <select id="family" onchange="changeFamily()">
+   <option value="cms">Dynacord CMS — Mixing Console</option>
+   <option value="pm">Dynacord PowerMate — Powered Mixer Family</option>
+  </select>
+  <span class="pill" id="familyTag">CMS TRAINING PATH</span>
+ </div>
+</section>
+
+<div class="warning" id="modelWarning">
+ <strong>تنبيه الموديل:</strong>
+ هذا مختبر تعليمي عام للعائلة وليس محاكاة مطابقة للوحة جهاز محدد.
+ لا تعتمد على أي توصيل أو قدرة أو وظيفة قبل مراجعة دليل الموديل الفعلي.
+</div>
+
+<section class="section">
+ <div class="section-title">
+  <h3 id="overviewTitle">مسار التعلم</h3>
+  <span class="pill">MODULE 01–06</span>
+ </div>
+ <div class="grid" id="modules"></div>
+</section>
+
+<section class="section">
+ <div class="section-title">
+  <h3 id="mixerTitle">محاكاة قناة صوتية تعليمية</h3>
+  <span class="pill">GENERIC CHANNEL MODEL</span>
+ </div>
+ <p class="muted" id="mixerDesc">
+  غيّر الإعدادات ولاحظ التأثير الحسابي التوضيحي على مستوى الإشارة.
+  هذه المحاكاة لا تنتج صوتاً ولا تمثل DSP حقيقياً.
+ </p>
+
+ <div class="two">
+  <div class="card">
+   <h3 id="channelTitle">Channel 01 — Virtual Microphone</h3>
+   <div class="grid" style="grid-template-columns:repeat(2,minmax(0,1fr))">
+    <div class="channel">
+     <h4>GAIN / TRIM</h4>
+     <div class="knob" id="gainKnob">0 dB</div>
+     <div class="control">
+      <label><span>-20 dB</span><b id="gainVal">0 dB</b><span>+40 dB</span></label>
+      <input id="gain" type="range" min="-20" max="40" value="0" oninput="updateLab()">
+     </div>
+    </div>
+    <div class="channel">
+     <h4>HIGH EQ</h4>
+     <div class="knob" id="highKnob">0 dB</div>
+     <div class="control">
+      <label><span>-15 dB</span><b id="highVal">0 dB</b><span>+15 dB</span></label>
+      <input id="high" type="range" min="-15" max="15" value="0" oninput="updateLab()">
+     </div>
+    </div>
+    <div class="channel">
+     <h4>MID EQ</h4>
+     <div class="knob" id="midKnob">0 dB</div>
+     <div class="control">
+      <label><span>-15 dB</span><b id="midVal">0 dB</b><span>+15 dB</span></label>
+      <input id="mid" type="range" min="-15" max="15" value="0" oninput="updateLab()">
+     </div>
+    </div>
+    <div class="channel">
+     <h4>LOW EQ</h4>
+     <div class="knob" id="lowKnob">0 dB</div>
+     <div class="control">
+      <label><span>-15 dB</span><b id="lowVal">0 dB</b><span>+15 dB</span></label>
+      <input id="low" type="range" min="-15" max="15" value="0" oninput="updateLab()">
+     </div>
+    </div>
+   </div>
+   <div class="field">
+    <label><span id="auxLabel">AUX SEND</span><b class="value" id="auxVal">0%</b></label>
+    <input id="aux" type="range" min="0" max="100" value="0" oninput="updateLab()">
+   </div>
+   <div class="field">
+    <label><span id="faderLabel">CHANNEL FADER</span><b class="value" id="faderVal">0 dB</b></label>
+    <input id="fader" type="range" min="-60" max="10" value="0" oninput="updateLab()">
+   </div>
+   <div class="toolbar">
+    <button class="btn" onclick="resetLab()" id="resetLabBtn">إعادة ضبط القناة</button>
+    <button class="btn primary" onclick="runSignal()" id="runBtn">تشغيل تحليل المسار</button>
+   </div>
+  </div>
+
+  <div class="card">
+   <h3 id="signalTitle">Signal Flow</h3>
+   <div class="flow">
+    <span class="node">INPUT</span><span class="arrow">→</span>
+    <span class="node">PREAMP</span><span class="arrow">→</span>
+    <span class="node">EQ</span><span class="arrow">→</span>
+    <span class="node">FADER</span><span class="arrow">→</span>
+    <span class="node">BUS / MAIN</span>
+   </div>
+   <p class="muted" id="signalDesc">مسار تعليمي مبسط. ترتيب المعالجة والتوجيه الفعلي يختلف حسب الجهاز.</p>
+   <div class="section">
+    <label id="meterTitle">VIRTUAL LEVEL INDICATOR</label>
+    <div class="meter"><div id="meterBar"></div></div>
+    <p class="small" id="meterRead">Model level: 45%</p>
+   </div>
+   <div id="diagnosis" class="good">الإعدادات الافتراضية معتدلة في هذا النموذج.</div>
+   <div class="warning" id="clipWarning">
+    مؤشر المستوى هنا حساب توضيحي وليس قياساً حقيقياً لـ dBFS أو dBu أو dB SPL.
+   </div>
+  </div>
+ </div>
+</section>
+
+<section class="section">
+ <div class="section-title">
+  <h3 id="safetyTitle">التشغيل والتوصيل الآمن</h3>
+  <span class="pill">SAFETY FIRST</span>
+ </div>
+ <div class="grid" id="safetyCards"></div>
+</section>
+
+<section class="section">
+ <div class="section-title">
+  <h3 id="scenarioTitle">سيناريوهات الأعطال والتشخيص</h3>
+  <span class="pill">FIELD PRACTICE</span>
+ </div>
+ <div class="card">
+  <div class="field">
+   <label id="scenarioLabel">اختر المشكلة</label>
+   <select id="scenario" onchange="showScenario()"></select>
+  </div>
+  <div id="scenarioAnswer" class="lesson"></div>
+ </div>
+</section>
+
+<section class="section">
+ <div class="section-title">
+  <h3 id="quizTitle">اختبار فني</h3>
+  <span class="pill">ASSESSMENT</span>
+ </div>
+ <div class="card" id="quiz"></div>
+</section>
+</main>
+
+<footer>PRO AUDIO MASTER ACADEMY · DYNACORD TRAINING MODULE</footer>
+
+<script>
+const translations={
+ ar:{
+  heroTitle:"مختبر تدريب مكسرات Dynacord",
+  heroDesc:"تعلّم بنية المكسر، وإدارة الإشارة، وضبط القنوات، والتوجيه، ومبادئ التشغيل الآمن. اختر عائلة الجهاز لتظهر لك المسارات التدريبية المناسبة.",
+  home:"الأكاديمية",overview:"مسار التعلم",mixer:"محاكاة قناة صوتية تعليمية",
+  mixerDesc:"غيّر الإعدادات ولاحظ التأثير الحسابي التوضيحي على مستوى الإشارة. هذه المحاكاة لا تنتج صوتاً ولا تمثل DSP حقيقياً.",
+  channel:"القناة 01 — ميكروفون افتراضي",aux:"إرسال AUX",fader:"مستوى القناة Fader",
+  reset:"إعادة ضبط القناة",run:"تشغيل تحليل المسار",signal:"مسار الإشارة",
+  safety:"التشغيل والتوصيل الآمن",scenario:"سيناريوهات الأعطال والتشخيص",
+  scenarioLabel:"اختر المشكلة",quiz:"اختبار فني",language:"EN",
+  familyCMS:"مسار تدريب CMS",familyPM:"مسار تدريب PowerMate",
+  cmsWarning:"هذا مسار تعليمي لعائلة CMS. تختلف الواجهات والوظائف بين الموديلات، ويجب الرجوع إلى دليل الجهاز المحدد.",
+  pmWarning:"PowerMate عائلة تشمل موديلات Powered Mixer. تحقق من دليل الموديل لتحديد مخارج السماعات ومواصفات القدرة والممانعة.",
+  generic:"محاكاة تعليمية عامة — ليست نسخة مطابقة لموديل فعلي.",
+  low:"الإشارة منخفضة في هذا النموذج. افحص مصدر الإشارة والتوصيل وGain ومستوى Fader.",
+  high:"المستوى مرتفع في النموذج. في الجهاز الحقيقي افحص مؤشرات Peak واحتمال clipping وخفّض المستوى عند المرحلة المناسبة.",
+  normal:"المستوى متوسط في النموذج. تابع الاستماع والقياس على الجهاز الحقيقي.",
+  resetDone:"تمت إعادة إعدادات القناة.",
+  answered:"أجب عن جميع الأسئلة أولاً.",
+  passed:"اجتزت الاختبار!",
+  failed:"لم تجتز الاختبار بعد. راجع الإجابات وحاول مرة أخرى.",
+  score:"النتيجة"
+ },
+ en:{
+  heroTitle:"Dynacord Mixer Training Lab",
+  heroDesc:"Learn mixer architecture, signal management, channel setup, routing and safe operation. Select a product family to view its learning path.",
+  home:"Academy",overview:"Learning Path",mixer:"Educational Channel Simulator",
+  mixerDesc:"Change controls and observe an illustrative level model. This simulator produces no audio and is not real DSP.",
+  channel:"Channel 01 — Virtual Microphone",aux:"AUX SEND",fader:"CHANNEL FADER",
+  reset:"Reset Channel",run:"Analyze Signal Path",signal:"Signal Flow",
+  safety:"Safe Operation & Connections",scenario:"Fault Diagnosis Scenarios",
+  scenarioLabel:"Choose a fault",quiz:"Technical Assessment",language:"عربي",
+  familyCMS:"CMS TRAINING PATH",familyPM:"POWER MATE TRAINING PATH",
+  cmsWarning:"Educational CMS family path. Interfaces and functions vary by model. Consult the exact unit's manual.",
+  pmWarning:"PowerMate includes powered mixer models. Consult the exact model manual for speaker outputs, power and impedance.",
+  generic:"Generic educational simulation — not an exact model replica.",
+  low:"The model level is low. Check source, connection, gain and fader.",
+  high:"The model level is high. On real equipment, check peak indicators and possible clipping.",
+  normal:"The model level is moderate. Continue listening and measuring on real equipment.",
+  resetDone:"Channel controls reset.",
+  answered:"Answer all questions first.",
+  passed:"Assessment passed!",
+  failed:"Not passed yet. Review and try again.",
+  score:"Score"
+ }
+};
+let lang="ar";
+let answers={};
+const course={
+ cms:{
+  modules:[
+   ["01","التعرف على عائلة CMS","CMS Family Orientation","تمييز الموديل، مراجعة دليل التشغيل، التعرف على بنية المكسر."],
+   ["02","مدخلات القنوات","Channel Inputs","Mic وLine، مصادر الإشارة، الكابلات، مستوى الإدخال."],
+   ["03","Gain وEQ","Gain & Equalization","ضبط مستوى الإدخال والتوازن الترددي بطريقة منظمة."],
+   ["04","AUX وFX","Auxiliary & Effects","مبادئ الإرسال إلى المراقبة والمؤثرات بحسب الموديل."],
+   ["05","التوجيه والمخارج","Routing & Outputs","فهم المسارات ومخارج الإشارة دون افتراض تخطيط موديل محدد."],
+   ["06","التشغيل والصيانة","Operation & Maintenance","فحص التوصيلات، التشغيل، الإيقاف، والتوثيق."]
+  ],
+  safety:[
+   ["مطابقة الموديل","Model verification","سجّل رقم الموديل وإصدار الجهاز قبل اتباع أي تعليمات توصيل."],
+   ["التغذية الكهربائية","Power supply","تحقق من متطلبات الجهد والتردد والتأريض من لوحة الجهاز والدليل."],
+   ["مستوى الإشارة","Signal level","ابدأ بمستويات منخفضة، ثم ارفعها تدريجياً مع مراقبة المؤشرات."]
+  ],
+  scenarios:[
+   ["لا توجد إشارة","No signal","تحقق من المصدر، الكابل، اختيار Mic/Line، كتم القناة، Gain، والتوجيه. اختبر كل مرحلة منفردة."],
+   ["الصوت مشوش","Distorted sound","افحص مستوى المصدر ومرحلة الإدخال ومؤشر Peak. خفّض الإشارة عند المرحلة التي يحدث فيها التشويه."],
+   ["لا يوجد صوت في AUX","No AUX signal","تحقق من مستوى إرسال AUX، وحالة Mute، وتوجيه الإرسال، ومخرج المسار والجهاز المستقبل. راجع Pre/Post حسب الموديل."],
+   ["صفير Feedback","Acoustic feedback","اخفض مستوى المسار المتسبب، وافحص مواقع الميكروفونات والسماعات، والاتجاهات، والانعكاسات، ثم عالج التردد المحدد عند الحاجة."]
+  ]
+ },
+ pm:{
+  modules:[
+   ["01","فهم Powered Mixer","Powered Mixer Concept","الفرق بين المكسر المزود بمضخم قدرة والمكسر ذي مخارج Line فقط."],
+   ["02","مدخلات القنوات","Channel Inputs","فهم مداخل Mic وLine وضبط Gain والإشارات."],
+   ["03","EQ وAUX","EQ & Auxiliary Sends","التوازن الترددي وإرسال المراقبة والمؤثرات وفق الموديل."],
+   ["04","مخارج الإشارة","Signal Outputs","التمييز بين مخارج Line ومخارج السماعات ذات القدرة."],
+   ["05","السماعات والممانعة","Speakers & Impedance","مطابقة الحمل ومواصفات السماعات مع دليل الجهاز."],
+   ["06","إجراءات التشغيل","Operating Procedure","فحص النظام، التسلسل الآمن، واختبار الأعطال."]
+  ],
+  safety:[
+   ["تحديد نوع الخرج","Output identification","لا تخلط بين Line Output وSpeaker Output. افحص تسمية الموصل والدليل."],
+   ["مطابقة السماعات","Speaker matching","تحقق من الممانعة والحمل والقدرة المسموح بها في دليل الموديل."],
+   ["إيقاف التشغيل","Power down","اخفض مستويات الصوت وأوقف النظام وفق تسلسل التشغيل والإيقاف الموصى به من المصنع."]
+  ],
+  scenarios:[
+   ["لا يوجد صوت بالسماعات","No speaker output","تحقق أولاً من الموديل ووضع التشغيل والتوصيل الصحيح ومصدر الإشارة. لا تجرب توصيلات عشوائية."],
+   ["حماية أو فصل الخرج","Protection or shutdown","اخفض المستوى وأوقف التشغيل عند الاشتباه بتحميل زائد أو قصر. افحص الكابلات والسماعات بعد فصل الطاقة."],
+   ["سخونة غير طبيعية","Abnormal heating","أوقف الاستخدام عند وجود سخونة غير معتادة أو تهوية محجوبة. افحص التهوية والحمل وفق الدليل."],
+   ["تشويه عند رفع الصوت","Distortion at high level","تحقق من clipping عند المصدر والمكسر ومضخم القدرة، ومن حمل السماعات وحدود تشغيلها."]
+  ]
+ }
+};
+const questions={
+ cms:[
+  {q:"ما المرجع الصحيح قبل تحديد وظيفة زر في موديل CMS؟",o:["دليل الموديل المحدد","لون الجهاز","تجربة زر عشوائي"],a:0},
+  {q:"ما الذي يجب فحصه عند غياب إشارة القناة؟",o:["المصدر والكابل وGain وMute والتوجيه","مكبرات الإضاءة","حامل الميكروفون فقط"],a:0},
+  {q:"هل كل مخارج AUX لها الوظيفة نفسها في كل موديل؟",o:["لا، يجب التحقق من الدليل","نعم دائماً","تتحدد بلون الكابل"],a:0}
+ ],
+ pm:[
+  {q:"ما الفرق الأساسي الذي يجب فهمه في Powered Mixer؟",o:["وجود مضخم قدرة مدمج في موديلات محددة","أنه لا يحتاج إلى كهرباء","أنه لا يحتوي على قنوات"],a:0},
+  {q:"هل يجوز توصيل سماعة بأي مخرج Line؟",o:["لا، يجب تحديد نوع الخرج","نعم دائماً","إذا كان الكابل قصيراً"],a:0},
+  {q:"ما الذي يحدد توافق السماعة مع خرج القدرة؟",o:["مواصفات القدرة والممانعة في دليل الموديل","لون السماعة","طول حامل السماعة"],a:0}
+ ]
+};
+
+function tr(key){return translations[lang][key]||key}
+function setLang(){
+ lang=lang==="ar"?"en":"ar";
+ document.documentElement.lang=lang;
+ document.documentElement.dir=lang==="ar"?"rtl":"ltr";
+ document.getElementById("langBtn").textContent=tr("language");
+ renderAll();
+}
+function family(){return document.getElementById("family").value}
+function changeFamily(){renderAll()}
+function renderAll(){
+ const f=family(),data=course[f];
+ document.getElementById("heroTitle").textContent=tr("heroTitle");
+ document.getElementById("heroDesc").textContent=tr("heroDesc");
+ document.getElementById("homeText").textContent=tr("home");
+ document.getElementById("overviewTitle").textContent=tr("overview");
+ document.getElementById("mixerTitle").textContent=tr("mixer");
+ document.getElementById("mixerDesc").textContent=tr("mixerDesc");
+ document.getElementById("channelTitle").textContent=tr("channel");
+ document.getElementById("auxLabel").textContent=tr("aux");
+ document.getElementById("faderLabel").textContent=tr("fader");
+ document.getElementById("resetLabBtn").textContent=tr("reset");
+ document.getElementById("runBtn").textContent=tr("run");
+ document.getElementById("signalTitle").textContent=tr("signal");
+ document.getElementById("safetyTitle").textContent=tr("safety");
+ document.getElementById("scenarioTitle").textContent=tr("scenario");
+ document.getElementById("scenarioLabel").textContent=tr("scenarioLabel");
+ document.getElementById("quizTitle").textContent=tr("quiz");
+ document.getElementById("familyTag").textContent=tr(f==="cms"?"familyCMS":"familyPM");
+ document.getElementById("modelWarning").innerHTML="<strong>"+(lang==="ar"?"تنبيه الموديل:":"Model notice:")+"</strong> "+tr(f==="cms"?"cmsWarning":"pmWarning")+" "+tr("generic");
+ document.getElementById("modules").innerHTML=data.modules.map(m=>`
+  <article class="card">
+   <span class="pill">MODULE ${m[0]}</span>
+   <h3>${lang==="ar"?m[1]:m[2]}</h3>
+   <p class="muted">${lang==="ar"?m[3]:moduleEnglish(m[0],f)}</p>
+  </article>`).join("");
+ document.getElementById("safetyCards").innerHTML=data.safety.map(x=>`
+  <article class="card"><h3>${lang==="ar"?x[0]:x[1]}</h3>
+  <p class="muted">${lang==="ar"?x[2]:safetyEnglish(x[0],f)}</p></article>`).join("");
+ document.getElementById("scenario").innerHTML=data.scenarios.map((x,i)=>
+  `<option value="${i}">${lang==="ar"?x[0]:x[1]}</option>`).join("");
+ showScenario();
+ renderQuiz();
+ updateLab();
+}
+function moduleEnglish(id,f){
+ const cms={
+ "01":"Identify the exact model, review its manual and understand the console architecture.",
+ "02":"Mic and line sources, cables and input levels.",
+ "03":"Set input gain and frequency balance methodically.",
+ "04":"Monitor and effects sends according to the model.",
+ "05":"Understand signal paths and outputs without assuming a model layout.",
+ "06":"Connection checks, operation, shutdown and documentation."
+ };
+ const pm={
+ "01":"Understand powered mixer architecture and line-level versus powered outputs.",
+ "02":"Understand mic and line inputs and gain staging.",
+ "03":"Frequency balance, monitor sends and effects according to the model.",
+ "04":"Distinguish line outputs from powered loudspeaker outputs.",
+ "05":"Match loudspeaker impedance and ratings to the manual.",
+ "06":"Inspection, safe operating sequence and fault checks."
+ };
+ return (f==="cms"?cms:pm)[id];
+}
+function safetyEnglish(title,f){
+ const cms={
+ "مطابقة الموديل":"Record the exact model and revision before following connection instructions.",
+ "التغذية الكهربائية":"Verify voltage, frequency and grounding from the unit label and manual.",
+ "مستوى الإشارة":"Start low and increase gradually while monitoring indicators."
+ };
+ const pm={
+ "تحديد نوع الخرج":"Never confuse line outputs with powered speaker outputs. Verify labels and manual.",
+ "مطابقة السماعات":"Check impedance, load and permitted power in the model manual.",
+ "إيقاف التشغيل":"Lower audio levels and follow the manufacturer's shutdown sequence."
+ };
+ return (f==="cms"?cms:pm)[title]||"Follow the exact model's official documentation.";
+}
+function showScenario(){
+ const x=course[family()].scenarios[Number(document.getElementById("scenario").value)||0];
+ document.getElementById("scenarioAnswer").innerHTML=
+  "<strong>"+(lang==="ar"?x[0]:x[1])+"</strong><p>"+(lang==="ar"?x[2]:scenarioEnglish(x[0]))+"</p>";
+}
+function scenarioEnglish(title){
+ const dict={
+ "لا توجد إشارة":"Check the source, cable, mic/line selection, mute, gain and routing. Test each stage separately.",
+ "الصوت مشوش":"Check source and input levels and peak indicators. Reduce the signal at the stage where distortion occurs.",
+ "لا يوجد صوت في AUX":"Check AUX send level, mute, routing, output and receiving device. Verify pre/post operation for the exact model.",
+ "صفير Feedback":"Reduce the responsible path, inspect microphone and speaker positions, direction and reflections, then address the identified frequency if needed.",
+ "لا يوجد صوت بالسماعات":"Verify the exact model, operating mode, correct connection and signal source. Never try random connections.",
+ "حماية أو فصل الخرج":"Lower the level and stop if overload or short circuit is suspected. Inspect cables and speakers with power disconnected.",
+ "سخونة غير طبيعية":"Stop use if abnormal heat or blocked ventilation occurs. Check ventilation and load against the manual.",
+ "تشويه عند رفع الصوت":"Check clipping at the source, mixer and power amplifier, plus loudspeaker load and operating limits."
+ };
+ return dict[title]||"Consult the exact model's operating manual.";
+}
+function updateLab(){
+ const ids=["gain","high","mid","low","aux","fader"];
+ ids.forEach(id=>{
+  const v=Number(document.getElementById(id).value);
+  const unit=id==="aux"?"%":" dB";
+  document.getElementById(id+"Val").textContent=v+unit;
+  const knob=document.getElementById(id+"Knob");
+  if(knob)knob.textContent=v+unit;
+ });
+ const g=Number(gain.value),h=Number(high.value),m=Number(mid.value),
+ l=Number(low.value),f=Number(fader.value);
+ const model=Math.max(0,Math.min(100,Math.round(45+g*1.1+f+(h+m+l)*.35)));
+ document.getElementById("meterBar").style.width=model+"%";
+ document.getElementById("meterRead").textContent="Model level: "+model+"%";
+ const box=document.getElementById("diagnosis");
+ if(model>85){box.className="warning";box.textContent=tr("high")}
+ else if(model<20){box.className="warning";box.textContent=tr("low")}
+ else{box.className="good";box.textContent=tr("normal")}
+}
+function resetLab(){
+ ["gain","high","mid","low","aux","fader"].forEach(id=>document.getElementById(id).value=0);
+ updateLab();
+}
+function runSignal(){
+ updateLab();
+ const text=lang==="ar"
+ ?"تم تحليل القيم الافتراضية. افحص كل مرحلة على الجهاز الحقيقي باستخدام مؤشرات القياس والاستماع."
+ :"Virtual values analyzed. Verify every stage on real equipment using meters and listening.";
+ alert(text);
+}
+function renderQuiz(){
+ answers={};
+ const qs=questions[family()];
+ document.getElementById("quiz").innerHTML=qs.map((q,i)=>`
+  <div class="lesson">
+   <strong>${i+1}. ${q.q}</strong>
+   ${q.o.map((o,j)=>`<button class="option" id="q${i}_${j}" onclick="pick(${i},${j})">${o}</button>`).join("")}
+  </div>`).join("")+
+  `<button class="btn primary" onclick="gradeQuiz()">${lang==="ar"?"تصحيح الإجابات":"Submit Assessment"}</button>
+   <div id="quizResult"></div>`;
+}
+function pick(i,j){
+ answers[i]=j;
+ questions[family()][i].o.forEach((_,k)=>{
+  document.getElementById("q"+i+"_"+k).classList.toggle("selected",j===k);
+ });
+}
+function gradeQuiz(){
+ const qs=questions[family()];
+ if(Object.keys(answers).length!==qs.length){alert(tr("answered"));return}
+ let score=0;
+ qs.forEach((q,i)=>{
+  if(answers[i]===q.a)score++;
+  document.getElementById("q"+i+"_"+q.a).classList.add("correct");
+  if(answers[i]!==q.a)document.getElementById("q"+i+"_"+answers[i]).classList.add("wrong");
+ });
+ const pct=Math.round(score/qs.length*100);
+ document.getElementById("quizResult").innerHTML=
+ `<div class="${pct>=70?"good":"warning"}">${tr("score")}: ${pct}% — ${pct>=70?tr("passed"):tr("failed")}</div>`;
+}
+renderAll();
+</script>
+</body>
+</html>
