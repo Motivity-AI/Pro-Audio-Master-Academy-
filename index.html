@@ -4,789 +4,981 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#090e19">
-<meta name="description" content="PRO AUDIO MASTER ACADEMY - Complete Audio Engineering Education">
+<meta name="theme-color" content="#10131b">
 <title>PRO AUDIO MASTER ACADEMY</title>
-
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap');
-
 :root {
-  --bg:#090e19;
-  --panel:#111a2b;
-  --panel2:#172338;
-  --border:#26364f;
-  --text:#edf3fc;
-  --muted:#91a2bb;
-  --red:#e60024;
+  --bg:#0b0e14;
+  --panel:#141a25;
+  --panel2:#1b2432;
+  --line:#293548;
+  --red:#e60025;
   --blue:#38bdf8;
   --gold:#e5c07b;
   --green:#22c55e;
-  --purple:#a855f7;
-  --radius:16px;
+  --text:#edf2f7;
+  --muted:#9ba9bb;
 }
 *{box-sizing:border-box}
 body{
   margin:0;background:var(--bg);color:var(--text);
-  font-family:'Cairo','Inter',sans-serif;
-  min-height:100vh;
+  font-family:Arial,Tahoma,sans-serif;line-height:1.7;
 }
-button{font:inherit;cursor:pointer}
-a{color:inherit;text-decoration:none}
-.app{display:flex;min-height:100vh}
-.sidebar{
-  width:265px;flex-shrink:0;background:#0d1524;
-  border-left:1px solid var(--border);
-  padding:22px 15px;display:flex;flex-direction:column;
-  position:sticky;top:0;height:100vh;overflow:auto;
-}
-.brand{padding:8px 12px 25px;border-bottom:1px solid var(--border)}
-.brand-icon{
-  width:44px;height:44px;border-radius:13px;
-  background:linear-gradient(135deg,var(--red),#8e001b);
-  display:grid;place-items:center;font-size:23px;margin-bottom:12px;
-}
-.brand h1{font-size:16px;line-height:1.5;margin:0;font-weight:800}
-.brand p{font:11px Inter;color:var(--muted);margin:5px 0}
-.nav-title{font-size:11px;color:var(--muted);padding:20px 12px 8px}
-.nav-btn{
-  border:0;background:transparent;color:#b7c5d9;
-  padding:11px 13px;border-radius:10px;text-align:right;
-  width:100%;display:flex;align-items:center;gap:11px;
-  margin:3px 0;transition:.2s;
-}
-.nav-btn:hover,.nav-btn.active{
-  background:var(--panel2);color:white;
-}
-.nav-btn.active{border-right:3px solid var(--red)}
-.nav-icon{font-size:18px;width:24px;text-align:center}
-.sidebar-footer{margin-top:auto;padding:14px 8px;color:var(--muted);font-size:11px}
-.main{flex:1;min-width:0}
+button,input,select{font:inherit}
+button{cursor:pointer}
+.app{min-height:100vh;display:flex;flex-direction:column}
 .topbar{
-  min-height:75px;border-bottom:1px solid var(--border);
-  display:flex;justify-content:space-between;align-items:center;
-  padding:14px 28px;gap:15px;flex-wrap:wrap;
-  background:#0b1321;
+  display:flex;align-items:center;justify-content:space-between;
+  gap:12px;padding:14px 22px;background:#101722;
+  border-bottom:1px solid var(--line);position:sticky;top:0;z-index:10;
 }
-.topbar h2{font-size:17px;margin:0}
-.top-actions{display:flex;align-items:center;gap:9px}
+.brand{display:flex;align-items:center;gap:12px}
+.logo{
+  width:43px;height:43px;border-radius:12px;
+  display:grid;place-items:center;background:var(--red);
+  font-weight:900;font-size:20px;
+}
+.brand h1{font-size:16px;margin:0;letter-spacing:.5px}
+.brand small{display:block;color:var(--muted);font-size:11px}
+.top-actions{display:flex;gap:8px;align-items:center}
 .btn{
-  border:1px solid var(--border);background:var(--panel2);
-  color:white;border-radius:10px;padding:9px 14px;
+  border:1px solid var(--line);background:var(--panel2);
+  color:var(--text);padding:9px 13px;border-radius:9px;
 }
+.btn:hover{border-color:var(--blue)}
 .btn.primary{background:var(--red);border-color:var(--red)}
-.btn:hover{filter:brightness(1.15)}
-.content{padding:28px;max-width:1500px;margin:auto}
+.btn.gold{background:var(--gold);color:#171717;border-color:var(--gold)}
+.layout{display:grid;grid-template-columns:245px 1fr;flex:1}
+.sidebar{
+  background:#101722;border-left:1px solid var(--line);
+  padding:18px 12px;min-height:calc(100vh - 72px);
+}
+.nav-title{font-size:11px;color:var(--muted);padding:12px 10px 5px}
+.nav-btn{
+  display:flex;width:100%;gap:10px;align-items:center;
+  border:0;background:transparent;color:#c5d0df;
+  padding:11px 12px;border-radius:9px;text-align:start;margin:3px 0;
+}
+.nav-btn:hover,.nav-btn.active{background:#202b3b;color:white}
+.nav-btn.active{border-right:3px solid var(--red)}
+.main{padding:25px;max-width:1500px;width:100%;margin:auto}
 .hero{
-  padding:30px;border:1px solid var(--border);border-radius:22px;
-  background:linear-gradient(115deg,#182840,#111a2b 60%,#291421);
-  position:relative;overflow:hidden;
+  padding:30px;border:1px solid var(--line);border-radius:18px;
+  background:radial-gradient(circle at 85% 10%,#25344a 0,transparent 38%),
+  linear-gradient(135deg,#171e2b,#111722);
 }
-.hero:after{
-  content:"♫";position:absolute;left:35px;top:5px;
-  font-size:170px;color:#ffffff09;
-}
-.hero h1{font-size:clamp(25px,4vw,38px);margin:0 0 8px}
-.hero p{color:#bdc9db;max-width:650px;line-height:1.9}
-.hero .btn{margin-top:12px}
+.eyebrow{color:var(--gold);font-size:12px;font-weight:bold}
+.hero h2{font-size:clamp(24px,4vw,39px);line-height:1.3;margin:10px 0}
+.hero p{color:var(--muted);max-width:760px}
+.hero-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
 .section-head{
   display:flex;justify-content:space-between;align-items:center;
-  gap:12px;margin:30px 0 15px;flex-wrap:wrap;
+  gap:12px;margin:27px 0 14px;
 }
-.section-head h3{font-size:19px;margin:0}
+.section-head h2,.section-head h3{margin:0}
 .muted{color:var(--muted)}
-.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:15px}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
 .card{
-  background:var(--panel);border:1px solid var(--border);
-  border-radius:var(--radius);padding:19px;min-width:0;
+  background:var(--panel);border:1px solid var(--line);
+  border-radius:14px;padding:18px;min-width:0;
 }
-.stat{display:flex;justify-content:space-between;align-items:center}
-.stat strong{font:800 27px Inter;color:white}
-.stat-icon{font-size:26px}
-.card h4{margin:8px 0;font-size:15px}
-.card p{color:var(--muted);font-size:12px;line-height:1.8}
-.progress{height:7px;background:#26364c;border-radius:20px;overflow:hidden;margin:12px 0}
-.progress span{display:block;height:100%;background:var(--blue);border-radius:20px}
-.course-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}
-.course-card{
-  background:var(--panel);border:1px solid var(--border);
-  border-radius:15px;padding:18px;transition:.2s;
+.card h3{margin:4px 0 8px;font-size:17px}
+.card p{color:var(--muted);font-size:13px}
+.card .icon{font-size:25px}
+.card-action{margin-top:12px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:18px}
+.stat{background:#111925;border:1px solid var(--line);padding:15px;border-radius:12px}
+.stat strong{display:block;font-size:25px;color:var(--gold)}
+.stat span{font-size:12px;color:var(--muted)}
+.progress-track{height:8px;background:#273244;border-radius:20px;overflow:hidden}
+.progress-fill{height:100%;background:var(--green);width:0%;transition:width .3s}
+.list{display:grid;gap:10px}
+.lesson-row{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:13px;background:var(--panel);border:1px solid var(--line);
+  border-radius:11px;
 }
-.course-card:hover{border-color:var(--blue);transform:translateY(-2px)}
-.course-icon{font-size:29px;margin-bottom:12px}
-.course-card h4{margin:0 0 7px}
-.course-card p{font-size:12px;color:var(--muted);line-height:1.8}
-.tag{
-  display:inline-block;font-size:10px;padding:4px 9px;
-  border-radius:20px;background:#203149;color:var(--blue);
-  margin:3px 2px;
+.lesson-row small{color:var(--muted);display:block}
+.tag{font-size:11px;padding:4px 8px;border-radius:20px;background:#243348;color:var(--blue)}
+.lesson-content{max-width:900px}
+.lesson-content h2{font-size:27px}
+.lesson-content p{color:#d2dbe7}
+.lesson-content li{margin:8px 0}
+.callout{border-right:3px solid var(--gold);background:#211f1a;padding:13px 16px;border-radius:8px;margin:15px 0}
+.quiz-option{
+  display:block;width:100%;text-align:start;padding:12px;
+  border:1px solid var(--line);background:var(--panel2);
+  color:var(--text);border-radius:9px;margin:8px 0;
 }
-.panel{background:var(--panel);border:1px solid var(--border);border-radius:16px;padding:20px}
-.lesson-list{display:grid;gap:9px}
-.lesson-item{
-  display:flex;align-items:center;justify-content:space-between;
-  gap:10px;padding:13px;border:1px solid var(--border);
-  border-radius:10px;background:#111b2a;
+.quiz-option.selected{border-color:var(--blue);background:#183044}
+.quiz-option.correct{border-color:var(--green)}
+.quiz-option.wrong{border-color:var(--red)}
+.toolbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+select,input[type="range"]{accent-color:var(--red)}
+select{
+  color:var(--text);background:var(--panel2);
+  border:1px solid var(--line);padding:9px;border-radius:8px;
 }
-.lesson-item button{white-space:nowrap}
-.empty{padding:35px;text-align:center;color:var(--muted)}
-.page-title{font-size:26px;margin:0 0 7px}
+.lab-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.channel{
+  background:#171d27;border:1px solid #384354;border-radius:13px;
+  padding:14px;text-align:center;
+}
+.channel h3{font-size:14px;margin:0 0 8px}
+.knob{
+  width:62px;height:62px;border:5px solid #4a5667;
+  border-top-color:var(--gold);border-radius:50%;
+  margin:8px auto;display:grid;place-items:center;
+  background:#10151d;font-weight:bold;font-size:12px;
+}
+.control{margin:12px 0;text-align:start}
+.control label{display:flex;justify-content:space-between;font-size:12px;color:var(--muted)}
+.control input{width:100%}
+.meter{height:13px;background:#0a0d12;border-radius:5px;overflow:hidden;margin:10px 0}
+.meter-fill{height:100%;width:0%;background:linear-gradient(90deg,#22c55e,#eab308,#ef4444)}
+.signal-box{
+  background:#101722;border:1px solid var(--line);padding:16px;
+  border-radius:12px;margin-top:15px;
+}
+.signal-flow{display:flex;gap:7px;align-items:center;flex-wrap:wrap}
+.signal-node{background:#243348;padding:8px 11px;border-radius:7px;font-size:12px}
+.signal-arrow{color:var(--gold)}
+.footer{padding:18px;text-align:center;color:var(--muted);font-size:12px;border-top:1px solid var(--line)}
 .hidden{display:none!important}
-footer{text-align:center;padding:30px;color:var(--muted);font-size:11px}
-input,select{
-  background:#0c1524;color:white;border:1px solid var(--border);
-  border-radius:9px;padding:10px;font:inherit;
+.empty{padding:35px;text-align:center;color:var(--muted)}
+@media(max-width:950px){
+  .layout{grid-template-columns:1fr}
+  .sidebar{min-height:auto;display:flex;overflow-x:auto;gap:5px;padding:8px}
+  .nav-title{display:none}
+  .nav-btn{white-space:nowrap;width:auto;min-width:max-content}
+  .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
-[dir="ltr"] .nav-btn{text-align:left}
-[dir="ltr"] .nav-btn.active{border-right:0;border-left:3px solid var(--red)}
-.mobile-menu{display:none}
-@media(max-width:1050px){
- .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
- .course-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
-}
-@media(max-width:700px){
- .sidebar{
-  position:fixed;z-index:10;right:0;top:0;
-  transform:translateX(105%);transition:.25s;
-  box-shadow:0 0 30px #0009;
- }
- [dir="ltr"] .sidebar{right:auto;left:0;transform:translateX(-105%)}
- .sidebar.open{transform:translateX(0)!important}
- .mobile-menu{display:inline-block}
- .content{padding:16px}
- .topbar{padding:12px 15px}
- .grid,.course-grid{grid-template-columns:1fr 1fr;gap:9px}
- .card,.course-card{padding:13px}
- .hero{padding:20px}
- .hero:after{font-size:100px}
- .stat strong{font-size:22px}
-}
-@media(max-width:390px){
- .grid,.course-grid{grid-template-columns:1fr}
+@media(max-width:600px){
+  .topbar{padding:10px}
+  .brand h1{font-size:12px}
+  .brand small{font-size:9px}
+  .main{padding:14px}
+  .hero{padding:20px}
+  .grid,.stats{grid-template-columns:1fr 1fr}
+  .lab-grid{grid-template-columns:1fr}
+  .top-actions .btn{padding:7px 9px;font-size:12px}
+  .lesson-row{align-items:flex-start;flex-direction:column}
 }
 </style>
 </head>
-
 <body>
 <div class="app">
-
-<aside class="sidebar" id="sidebar">
-  <div class="brand">
-    <div class="brand-icon">🎚️</div>
-    <h1>PRO AUDIO<br>MASTER ACADEMY</h1>
-    <p>PROFESSIONAL AUDIO EDUCATION</p>
-  </div>
-
-  <div class="nav-title" data-i18n="mainMenu">القائمة الرئيسية</div>
-
-  <button class="nav-btn active" data-page="dashboard">
-    <span class="nav-icon">⌂</span><span data-i18n="dashboard">لوحة التحكم</span>
-  </button>
-  <button class="nav-btn" data-page="curriculum">
-    <span class="nav-icon">🎓</span><span data-i18n="curriculum">الكليات التعليمية</span>
-  </button>
-  <button class="nav-btn" data-page="levels">
-    <span class="nav-icon">📚</span><span data-i18n="levels">المستويات الدراسية</span>
-  </button>
-  <button class="nav-btn" data-page="lessons">
-    <span class="nav-icon">📖</span><span data-i18n="lessons">الدروس</span>
-  </button>
-  <button class="nav-btn" data-page="lab">
-    <span class="nav-icon">🎛️</span><span data-i18n="lab">مختبر المحاكاة</span>
-  </button>
-
-  <div class="nav-title" data-i18n="training">التدريب والتقييم</div>
-  <button class="nav-btn" data-page="events">
-    <span class="nav-icon">🎤</span><span data-i18n="events">تشغيل الفعاليات</span>
-  </button>
-  <button class="nav-btn" data-page="engineering">
-    <span class="nav-icon">🔊</span><span data-i18n="engineering">هندسة الأنظمة</span>
-  </button>
-  <button class="nav-btn" data-page="exams">
-    <span class="nav-icon">📝</span><span data-i18n="exams">الاختبارات</span>
-  </button>
-  <button class="nav-btn" data-page="projects">
-    <span class="nav-icon">🏗️</span><span data-i18n="projects">المشاريع العملية</span>
-  </button>
-
-  <div class="nav-title" data-i18n="resources">المصادر</div>
-  <button class="nav-btn" data-page="library">
-    <span class="nav-icon">📂</span><span data-i18n="library">مكتبة الأجهزة</span>
-  </button>
-  <button class="nav-btn" data-page="profile">
-    <span class="nav-icon">👤</span><span data-i18n="profile">ملفي التعليمي</span>
-  </button>
-
-  <div class="sidebar-footer">
-    VERSION 1.0.0<br>
-    © PRO AUDIO MASTER ACADEMY
-  </div>
-</aside>
-
-<main class="main">
 <header class="topbar">
-  <div style="display:flex;align-items:center;gap:12px">
-    <button class="btn mobile-menu" id="menuBtn">☰</button>
+  <div class="brand">
+    <div class="logo">PA</div>
     <div>
-      <h2 data-i18n="welcome">مرحباً بك في الأكاديمية</h2>
-      <small class="muted" data-i18n="subtitle">رحلتك نحو الاحتراف تبدأ هنا</small>
+      <h1>PRO AUDIO MASTER ACADEMY</h1>
+      <small id="brandSubtitle">أكاديمية هندسة الصوت الاحترافية</small>
     </div>
   </div>
   <div class="top-actions">
-    <button class="btn" id="langBtn">English</button>
-    <button class="btn" id="resetBtn" title="Reset local progress">↻</button>
+    <button class="btn" id="languageButton" onclick="toggleLanguage()">EN</button>
+    <button class="btn" onclick="resetProgress()" id="resetButton">إعادة التقدم</button>
   </div>
 </header>
 
-<div class="content">
-<div id="pageContent"></div>
-</div>
+<div class="layout">
+<aside class="sidebar" id="sidebar">
+  <div class="nav-title" data-ar="الأكاديمية" data-en="ACADEMY">الأكاديمية</div>
+  <button class="nav-btn active" data-page="dashboard" onclick="navigate('dashboard')">🏠 <span data-ar="الرئيسية" data-en="Dashboard">الرئيسية</span></button>
+  <button class="nav-btn" data-page="curriculum" onclick="navigate('curriculum')">📚 <span data-ar="المناهج" data-en="Curriculum">المناهج</span></button>
+  <button class="nav-btn" data-page="levels" onclick="navigate('levels')">🎓 <span data-ar="المستويات" data-en="Levels">المستويات</span></button>
+  <div class="nav-title" data-ar="التدريب العملي" data-en="PRACTICE">التدريب العملي</div>
+  <button class="nav-btn" data-page="lab" onclick="navigate('lab')">🎛️ <span data-ar="مختبر المكسر" data-en="Mixer Lab">مختبر المكسر</span></button>
+  <button class="nav-btn" data-page="events" onclick="navigate('events')">🎤 <span data-ar="تشغيل الفعاليات" data-en="Live Events">تشغيل الفعاليات</span></button>
+  <button class="nav-btn" data-page="engineering" onclick="navigate('engineering')">🔊 <span data-ar="هندسة الأنظمة" data-en="System Engineering">هندسة الأنظمة</span></button>
+  <div class="nav-title" data-ar="التقييم" data-en="ASSESSMENT">التقييم</div>
+  <button class="nav-btn" data-page="progress" onclick="navigate('progress')">📈 <span data-ar="إنجازاتي" data-en="My Progress">إنجازاتي</span></button>
+</aside>
 
-<footer>
-PRO AUDIO MASTER ACADEMY · EDUCATION · ENGINEERING · PROFESSIONALISM
-</footer>
-</main>
+<main class="main" id="pageContent"></main>
+</div>
+<footer class="footer">PRO AUDIO MASTER ACADEMY · Learn · Practice · Engineer · Perform</footer>
 </div>
 
 <script>
 "use strict";
 
-/* ==================================
-   1. APPLICATION CONFIGURATION
-================================== */
-
-const APP = {
-  name: "PRO AUDIO MASTER ACADEMY",
-  version: "1.0.0",
-  storageKey: "proAudioAcademy_v1",
-  defaultLanguage: "ar"
+/* =========================
+   1. LANGUAGE AND STORAGE
+========================= */
+const STORAGE_KEY = "proAudioAcademy_v1";
+const defaultState = {
+  language:"ar",
+  completed:[],
+  scores:{},
+  attempts:{},
+  mixer:{
+    gain:0, high:0, mid:0, low:0, aux:0, fader:0
+  }
 };
-
-/* ==================================
-   2. TRANSLATION ENGINE
-================================== */
-
-const translations = {
- ar:{
-  mainMenu:"القائمة الرئيسية",dashboard:"لوحة التحكم",
-  curriculum:"الكليات التعليمية",levels:"المستويات الدراسية",
-  lessons:"الدروس",lab:"مختبر المحاكاة",
-  training:"التدريب والتقييم",events:"تشغيل الفعاليات",
-  engineering:"هندسة الأنظمة",exams:"الاختبارات",
-  projects:"المشاريع العملية",resources:"المصادر",
-  library:"مكتبة الأجهزة",profile:"ملفي التعليمي",
-  welcome:"مرحباً بك في الأكاديمية",
-  subtitle:"رحلتك نحو الاحتراف تبدأ هنا",
-  heroTitle:"تعلم هندسة الصوت من الصفر إلى الاحتراف",
-  heroText:"من أساسيات الصوت إلى المكسرات الرقمية وتصميم الأنظمة وتشغيل أكبر الفعاليات. أكاديمية متكاملة تجمع المعرفة العلمية والتطبيق العملي.",
-  start:"ابدأ التعلم الآن",
-  colleges:"الكليات التعليمية",
-  progress:"تقدمك التعليمي",
-  completed:"الدروس المكتملة",
-  totalLessons:"إجمالي الدروس",
-  score:"متوسط الاختبارات",
-  stages:"المستويات الأكاديمية",
-  continue:"تابع رحلتك التعليمية",
-  open:"استكشاف",
-  coming:"سيتم إضافة المحتوى التفصيلي في الوحدة التعليمية.",
-  noLessons:"لا توجد دروس منشورة في هذا القسم بعد.",
-  levelsTitle:"المستويات الأكاديمية العشرة",
-  labTitle:"مختبر هندسة الصوت",
-  labText:"سيتم ربط المحاكيات التفاعلية هنا.",
-  libraryTitle:"مكتبة المعدات الصوتية",
-  eventsTitle:"تشغيل وإدارة الفعاليات",
-  engineeringTitle:"هندسة الأنظمة الصوتية",
-  examsTitle:"الاختبارات والتقييم",
-  projectsTitle:"المشاريع العملية",
-  profileTitle:"ملفي التعليمي",
-  startLesson:"فتح الدرس",
-  markDone:"تسجيل الدرس كمكتمل",
-  done:"مكتمل",
-  notDone:"لم يكتمل",
-  language:"اللغة"
- },
- en:{
-  mainMenu:"MAIN MENU",dashboard:"Dashboard",
-  curriculum:"Academic Colleges",levels:"Study Levels",
-  lessons:"Lessons",lab:"Simulation Lab",
-  training:"TRAINING & ASSESSMENT",events:"Event Production",
-  engineering:"System Engineering",exams:"Examinations",
-  projects:"Practical Projects",resources:"RESOURCES",
-  library:"Equipment Library",profile:"My Learning Profile",
-  welcome:"Welcome to the Academy",
-  subtitle:"Your journey to professional excellence starts here",
-  heroTitle:"Learn Audio Engineering from Zero to Mastery",
-  heroText:"From sound fundamentals to digital consoles, system design and major live events. An integrated academy combining scientific knowledge with practical training.",
-  start:"Start Learning",
-  colleges:"Academic Colleges",
-  progress:"Your Learning Progress",
-  completed:"Completed Lessons",
-  totalLessons:"Total Lessons",
-  score:"Exam Average",
-  stages:"Academic Levels",
-  continue:"Continue Your Learning Journey",
-  open:"Explore",
-  coming:"Detailed educational content will be added in this module.",
-  noLessons:"No published lessons in this section yet.",
-  levelsTitle:"The Ten Academic Levels",
-  labTitle:"Audio Engineering Simulation Lab",
-  labText:"Interactive simulators will be integrated here.",
-  libraryTitle:"Audio Equipment Library",
-  eventsTitle:"Live Events & Production",
-  engineeringTitle:"Professional Audio System Engineering",
-  examsTitle:"Examinations & Assessment",
-  projectsTitle:"Practical Projects",
-  profileTitle:"My Learning Profile",
-  startLesson:"Open Lesson",
-  markDone:"Mark Lesson Complete",
-  done:"Completed",
-  notDone:"Not completed",
-  language:"Language"
- }
-};
-
-/* ==================================
-   3. CURRICULUM DATABASE
-================================== */
-
-const colleges = [
- {id:"foundation",icon:"🌊",name:"أساسيات الصوت والفيزياء",en:"Sound Fundamentals & Physics",desc:"التردد والموجات والضغط الصوتي والديسيبل."},
- {id:"microphones",icon:"🎙️",name:"الميكروفونات والتوصيلات",en:"Microphones & Connections",desc:"أنواع الميكروفونات والكابلات والإشارات."},
- {id:"analog",icon:"🎚️",name:"المكسرات التناظرية",en:"Analog Mixing Consoles",desc:"فهم المكسرات وقنوات الإدخال والإخراج."},
- {id:"dynacord",icon:"🔴",name:"Dynacord CMS & PM",en:"Dynacord CMS & PowerMate",desc:"شرح عملي تفصيلي لمكسرات Dynacord."},
- {id:"processing",icon:"🎛️",name:"معالجة الصوت والمؤثرات",en:"Audio Processing & Effects",desc:"EQ وCompressor وGate وReverb وDelay."},
- {id:"digital",icon:"💻",name:"المكسرات الرقمية",en:"Digital Mixing Consoles",desc:"X32 وM32 وYamaha وAllen & Heath وغيرها."},
- {id:"speakers",icon:"🔊",name:"السماعات والمضخمات",en:"Speakers & Amplifiers",desc:"Passive وActive وSubwoofers وDSP."},
- {id:"systems",icon:"📐",name:"هندسة الأنظمة الصوتية",en:"Sound System Engineering",desc:"توزيع السماعات والتغطية والقياس."},
- {id:"acoustics",icon:"🏛️",name:"الصوتيات المعمارية",en:"Architectural Acoustics",desc:"الصدى والارتداد والمعالجة الصوتية."},
- {id:"live",icon:"🎤",name:"الفعاليات والإنتاج الحي",en:"Live Sound & Event Production",desc:"الحفلات والمسرح والتجهيز والتشغيل."},
- {id:"venues",icon:"🕌",name:"المساجد والقاعات",en:"Mosques & Auditoriums",desc:"أنظمة الخطابة والمؤتمرات ودور العبادة."},
- {id:"network",icon:"🌐",name:"الشبكات الصوتية وأنظمة AV",en:"Audio Networking & AV",desc:"Dante وAoIP والتكامل السمعي البصري."}
-];
-
-const levels = [
- ["Foundation","التأسيس العلمي"],
- ["Audio Operator","مشغل صوت"],
- ["Professional Mixer","مهندس مزج صوت"],
- ["Digital Engineer","مهندس صوت رقمي"],
- ["System Technician","فني أنظمة صوتية"],
- ["Acoustic Engineer","مهندس صوتيات"],
- ["Live Sound Engineer","مهندس فعاليات"],
- ["Specialist Engineer","مهندس متخصص"],
- ["System Designer","مصمم أنظمة صوتية"],
- ["Master Engineer","مهندس صوت خبير"]
-];
-
-/* ==================================
-   4. APPLICATION STATE
-================================== */
+let state = loadState();
+let currentPage = "dashboard";
+let currentLessonId = null;
+let quizAnswers = {};
 
 function loadState(){
- try{
-  return JSON.parse(localStorage.getItem(APP.storageKey)) || {};
- }catch(e){return {};}
+  try {
+    const saved = JSON.parse(localStorage.getItem(STORAGE_KEY));
+    return saved ? {...defaultState,...saved,mixer:{...defaultState.mixer,...saved.mixer}} : {...defaultState};
+  } catch(e){ return {...defaultState}; }
 }
-
-let state = {
- language:APP.defaultLanguage,
- completed:[],
- studentName:"",
- ...loadState()
-};
-
 function saveState(){
- localStorage.setItem(APP.storageKey,JSON.stringify(state));
+  localStorage.setItem(STORAGE_KEY,JSON.stringify(state));
+}
+function t(ar,en){ return state.language==="ar" ? ar : en; }
+function esc(value){
+  return String(value ?? "").replace(/[&<>"']/g,c=>({
+    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+  }[c]));
+}
+function toggleLanguage(){
+  state.language = state.language==="ar" ? "en" : "ar";
+  saveState();
+  applyLanguage();
+  render();
+}
+function applyLanguage(){
+  const ar = state.language==="ar";
+  document.documentElement.lang = ar ? "ar" : "en";
+  document.documentElement.dir = ar ? "rtl" : "ltr";
+  document.getElementById("languageButton").textContent = ar ? "EN" : "عربي";
+  document.getElementById("resetButton").textContent = ar ? "إعادة التقدم" : "Reset Progress";
+  document.getElementById("brandSubtitle").textContent = ar
+    ? "أكاديمية هندسة الصوت الاحترافية"
+    : "Professional Audio Engineering Academy";
+  document.querySelectorAll("[data-ar][data-en]").forEach(el=>{
+    el.textContent = ar ? el.dataset.ar : el.dataset.en;
+  });
+}
+function resetProgress(){
+  if(!confirm(t("هل تريد حذف تقدمك ونتائجك المحفوظة على هذا الجهاز؟","Delete your saved progress and scores on this device?"))) return;
+  state.completed=[];
+  state.scores={};
+  state.attempts={};
+  saveState();
+  render();
 }
 
-const t = key => translations[state.language][key] || key;
-const isArabic = () => state.language==="ar";
+/* =========================
+   2. CURRICULUM DATABASE
+========================= */
+const colleges = [
+ {id:"foundation",icon:"🌊",ar:"أساسيات الصوت",en:"Audio Foundations",descAr:"الصوت والموجات والتردد والسعة والديسيبل.",descEn:"Sound waves, frequency, amplitude and decibels."},
+ {id:"microphones",icon:"🎙️",ar:"الميكروفونات",en:"Microphones",descAr:"أنواع الميكروفونات والأنماط القطبية والتوصيل.",descEn:"Microphone types, polar patterns and connections."},
+ {id:"analog",icon:"🎚️",ar:"المكسرات التناظرية",en:"Analog Mixers",descAr:"فهم القنوات وGain وEQ وAux وBus.",descEn:"Channels, gain, EQ, aux sends and buses."},
+ {id:"dynacord",icon:"🔴",ar:"Dynacord CMS وPowerMate",en:"Dynacord CMS & PowerMate",descAr:"التدريب على مكسرات Dynacord وفق موديلها ودليلها.",descEn:"Model-specific Dynacord training based on official manuals."},
+ {id:"processing",icon:"🎛️",ar:"معالجة الصوت",en:"Audio Processing",descAr:"Equalizer وCompressor وGate وEffects.",descEn:"Equalizers, compressors, gates and effects."},
+ {id:"digital",icon:"💻",ar:"المكسرات الرقمية",en:"Digital Mixers",descAr:"الطبقات والمشاهد والتوجيه والمعالجة الرقمية.",descEn:"Layers, scenes, routing and digital processing."},
+ {id:"speakers",icon:"🔊",ar:"السماعات ومكبرات القدرة",en:"Speakers & Amplifiers",descAr:"الممانعة والقدرة والتوصيل والتغطية.",descEn:"Impedance, power, wiring and coverage."},
+ {id:"systems",icon:"📐",ar:"هندسة الأنظمة الصوتية",en:"Sound System Engineering",descAr:"اختيار الأنظمة وتوزيع السماعات وحسابات SPL.",descEn:"System selection, loudspeaker layouts and SPL."},
+ {id:"acoustics",icon:"🏛️",ar:"الصوتيات المعمارية",en:"Room Acoustics",descAr:"الانعكاس والصدى والامتصاص والمعالجة.",descEn:"Reflections, reverberation, absorption and treatment."},
+ {id:"live",icon:"🎤",ar:"تشغيل الفعاليات",en:"Live Sound & Events",descAr:"الحفلات والمؤتمرات والمسارح والبث.",descEn:"Concerts, conferences, stages and broadcast."},
+ {id:"venues",icon:"🕌",ar:"القاعات والمساجد",en:"Venues & Mosques",descAr:"تصميم أنظمة المساجد والقاعات والمنشآت.",descEn:"Mosques, halls and venue sound systems."},
+ {id:"network",icon:"🌐",ar:"الصوت عبر الشبكات",en:"Network Audio",descAr:"Dante وAES67 والشبكات الصوتية.",descEn:"Dante, AES67 and networked audio."}
+];
 
-function courseName(c){
- return isArabic()?c.name:c.en;
+const lessons = [
+{
+ id:"F001",college:"foundation",level:1,duration:20,
+ ar:"ما هو الصوت؟",en:"What Is Sound?",
+ bodyAr:[
+  "الصوت اضطراب ميكانيكي ينتقل خلال وسط مادي مثل الهواء أو الماء أو المواد الصلبة. لا ينتقل الصوت في الفراغ بالطريقة التي ينتقل بها الضوء.",
+  "تبدأ السلسلة الصوتية عندما يهتز مصدر ما، فيحدث تغيراً في ضغط الوسط المحيط، ثم يصل هذا التغير إلى الأذن أو الميكروفون.",
+  "في أنظمة الصوت نستخدم الميكروفون لتحويل تغير الضغط إلى إشارة كهربائية، ثم نعالج الإشارة ونضخمها ونحوّلها إلى صوت عبر السماعة."
+ ],
+ bodyEn:[
+  "Sound is a mechanical disturbance travelling through a medium such as air, water or solids. It does not travel through a vacuum like light.",
+  "A vibrating source creates pressure variations in the surrounding medium. These variations reach the ear or a microphone.",
+  "In audio systems, a microphone converts pressure variations into an electrical signal, which is processed, amplified and reproduced by a loudspeaker."
+ ],
+ objectivesAr:["تعريف الصوت كموجة ميكانيكية.","شرح دور الميكروفون والسماعة.","تمييز المصدر والوسط والمستقبل."],
+ objectivesEn:["Define sound as a mechanical wave.","Explain microphone and loudspeaker roles.","Identify source, medium and receiver."],
+ quiz:[
+  {qAr:"أي مما يلي يحتاجه الصوت للانتقال؟",qEn:"What does sound need to travel?",optionsAr:["وسط مادي","فراغ تام","ضوء"],optionsEn:["A physical medium","A perfect vacuum","Light"],answer:0,whyAr:"الصوت موجة ميكانيكية تحتاج إلى وسط مادي.",whyEn:"Sound is a mechanical wave and requires a medium."},
+  {qAr:"ما وظيفة الميكروفون؟",qEn:"What does a microphone do?",optionsAr:["تحويل الصوت إلى إشارة كهربائية","زيادة مساحة القاعة","توليد الكهرباء"],optionsEn:["Convert sound into an electrical signal","Increase room size","Generate electricity"],answer:0,whyAr:"الميكروفون يحول التغيرات الصوتية إلى إشارة كهربائية.",whyEn:"A microphone converts acoustic variations into an electrical signal."}
+ ]
+},
+{
+ id:"F002",college:"foundation",level:1,duration:25,
+ ar:"التردد والطول الموجي",en:"Frequency & Wavelength",
+ bodyAr:[
+  "التردد هو عدد الدورات الكاملة للموجة في الثانية، ووحدته الهرتز Hz.",
+  "التردد المنخفض يرتبط عادةً بالإحساس بالجهير، والتردد المرتفع يرتبط بالإحساس بالحدة. هذا وصف إدراكي عام وليس بديلاً عن قياس الاستجابة.",
+  "العلاقة الأساسية: سرعة الصوت = التردد × الطول الموجي. في الهواء عند درجة حرارة الغرفة يمكن استخدام 343 متر/ثانية كتقريب."
+ ],
+ bodyEn:[
+  "Frequency is the number of complete cycles per second, measured in hertz (Hz).",
+  "Lower frequencies are generally perceived as bass and higher frequencies as treble. This is a broad perceptual description, not a substitute for measurement.",
+  "The basic relationship is: speed of sound = frequency × wavelength. Around room temperature, 343 m/s is a useful approximation in air."
+ ],
+ objectivesAr:["تعريف التردد.","معرفة وحدة Hz.","استخدام العلاقة بين السرعة والتردد والطول الموجي."],
+ objectivesEn:["Define frequency.","Know the Hz unit.","Use the speed-frequency-wavelength relationship."],
+ quiz:[
+  {qAr:"ما وحدة قياس التردد؟",qEn:"What is the unit of frequency?",optionsAr:["Hz","Watt","Ohm"],optionsEn:["Hz","Watt","Ohm"],answer:0,whyAr:"يقاس التردد بالهرتز.",whyEn:"Frequency is measured in hertz."}
+ ]
+},
+{
+ id:"F003",college:"foundation",level:1,duration:25,
+ ar:"الديسيبل ومستويات الصوت",en:"Decibels & Sound Levels",
+ bodyAr:[
+  "الديسيبل dB وحدة لوغاريتمية للتعبير عن النسب. يجب دائماً معرفة المرجع المستخدم: dB SPL أو dBu أو dBV أو dBFS وغيرها.",
+  "لا يجوز مقارنة قراءة dBFS الرقمية مباشرة بقراءة dB SPL في القاعة دون معرفة معايرة النظام.",
+  "زيادة 6 dB في مستوى ضغط الصوت تقابل تقريباً مضاعفة ضغط الصوت، بينما زيادة 10 dB تقابل عشرة أضعاف القدرة الصوتية في شروط المقارنة المناسبة."
+ ],
+ bodyEn:[
+  "The decibel (dB) is a logarithmic way to express ratios. Always identify the reference: dB SPL, dBu, dBV, dBFS and others.",
+  "A digital dBFS reading cannot be directly compared with room dB SPL without system calibration.",
+  "A 6 dB increase is approximately a doubling of sound pressure, while 10 dB corresponds to ten times the power ratio under the relevant comparison conditions."
+ ],
+ objectivesAr:["تمييز أنواع قياس الديسيبل.","فهم الطبيعة اللوغاريتمية.","عدم الخلط بين dBFS وdB SPL."],
+ objectivesEn:["Distinguish decibel references.","Understand logarithmic behaviour.","Avoid confusing dBFS with dB SPL."],
+ quiz:[
+  {qAr:"أي قراءة تستخدم لقياس مستوى ضغط الصوت في القاعة؟",qEn:"Which unit is used for acoustic sound pressure level?",optionsAr:["dB SPL","dBFS","dBu"],optionsEn:["dB SPL","dBFS","dBu"],answer:0,whyAr:"dB SPL مرجعه ضغط الصوت في الهواء.",whyEn:"dB SPL references acoustic pressure in air."}
+ ]
+},
+{
+ id:"M001",college:"microphones",level:2,duration:30,
+ ar:"أنواع الميكروفونات",en:"Microphone Types",
+ bodyAr:[
+  "الميكروفونات الديناميكية Dynamic شائعة في الاستخدام الحي وتتحمل ظروف العمل القاسية غالباً.",
+  "الميكروفونات المكثفة Condenser تحتاج عادةً إلى تغذية Phantom Power مناسبة، مثل 48V، وفق مواصفات الميكروفون.",
+  "اختيار الميكروفون لا يعتمد على النوع فقط؛ بل على المصدر الصوتي، الحساسية، نمط الالتقاط، البيئة، ومقدار الرفض خارج المحور."
+ ],
+ bodyEn:[
+  "Dynamic microphones are common in live sound and are often robust in demanding environments.",
+  "Condenser microphones typically require suitable phantom power, often 48V, according to the microphone specifications.",
+  "Selection depends on the source, sensitivity, polar pattern, environment and off-axis rejection—not type alone."
+ ],
+ objectivesAr:["التمييز بين Dynamic وCondenser.","فهم Phantom Power.","اختيار الميكروفون وفق التطبيق."],
+ objectivesEn:["Differentiate dynamic and condenser microphones.","Understand phantom power.","Select a microphone for the application."],
+ quiz:[
+  {qAr:"أي نوع يحتاج غالباً إلى Phantom Power؟",qEn:"Which type commonly requires phantom power?",optionsAr:["Condenser","Dynamic دائماً","Passive speaker"],optionsEn:["Condenser","Always dynamic","Passive speaker"],answer:0,whyAr:"كثير من ميكروفونات Condenser تحتاج إلى تغذية فانتوم.",whyEn:"Many condenser microphones require phantom power."}
+ ]
+},
+{
+ id:"A001",college:"analog",level:2,duration:35,
+ ar:"تشريح قناة المكسر التناظري",en:"Anatomy of an Analog Mixer Channel",
+ bodyAr:[
+  "قناة المكسر تستقبل مصدراً صوتياً عبر مدخل Mic أو Line وفق نوع الإشارة.",
+  "Gain أو Trim يضبط مستوى الإشارة الداخلة إلى القناة. لا تستخدمه كبديل عن خفض Fader أو التحكم في مستوى السماعة.",
+  "EQ يغير التوازن الترددي، وAux يرسل نسخة من الإشارة إلى مسار آخر مثل Monitor أو Effects بحسب تصميم المكسر.",
+  "القناة تصل في النهاية إلى Bus أو Main Mix وفق التوجيه Routing."
+ ],
+ bodyEn:[
+  "A mixer channel receives a source through a Mic or Line input, depending on the signal type.",
+  "Gain or Trim sets the input stage level. It is not a substitute for channel fader or loudspeaker level control.",
+  "EQ changes frequency balance. Aux sends a signal to another path such as a monitor or effects bus, depending on the mixer design.",
+  "The channel eventually reaches a bus or main mix through routing."
+ ],
+ objectivesAr:["معرفة وظائف Gain وEQ وAux وFader.","فهم مسار الإشارة.","التمييز بين مستوى الإدخال ومستوى الخرج."],
+ objectivesEn:["Understand Gain, EQ, Aux and Fader.","Understand signal flow.","Distinguish input and output levels."],
+ quiz:[
+  {qAr:"ما الوظيفة الأساسية لـ Gain؟",qEn:"What is the main purpose of Gain?",optionsAr:["ضبط مستوى الإشارة الداخلة","ضبط إضاءة المسرح","تغيير قطبية الكهرباء"],optionsEn:["Set the input signal level","Control stage lighting","Change mains polarity"],answer:0,whyAr:"Gain يضبط مستوى مرحلة الإدخال.",whyEn:"Gain adjusts the input stage level."}
+ ]
+},
+{
+ id:"D001",college:"dynacord",level:3,duration:35,
+ ar:"مقدمة إلى Dynacord CMS",en:"Introduction to Dynacord CMS",
+ bodyAr:[
+  "سلسلة CMS من Dynacord هي عائلة مكسرات صوتية. تختلف الخصائص والوظائف بحسب رقم الموديل وإصدار الجهاز.",
+  "قبل توصيل أي جهاز، تحقق من دليل التشغيل الخاص بالموديل، وحدد نوع المداخل والمخارج والتغذية الكهربائية ومسارات الإشارة.",
+  "في هذا المساق سنبني دروساً منفصلة للموديلات المختلفة، ولن نفترض أن جميع أجهزة CMS لها الواجهة أو الوظائف نفسها."
+ ],
+ bodyEn:[
+  "Dynacord CMS is a family of audio mixers. Features and functions vary by model and hardware revision.",
+  "Before connecting equipment, consult the exact model's operating manual and identify its inputs, outputs, power requirements and signal paths.",
+  "This course will create separate lessons for individual models rather than assuming every CMS unit has the same controls."
+ ],
+ objectivesAr:["فهم ضرورة تحديد الموديل.","الرجوع إلى الدليل الرسمي.","تمييز العائلة عن خصائص الجهاز المحدد."],
+ objectivesEn:["Identify the exact model.","Consult the official manual.","Distinguish product family from model-specific features."],
+ quiz:[
+  {qAr:"هل يجوز افتراض أن جميع موديلات CMS متطابقة؟",qEn:"Can all CMS models be assumed to be identical?",optionsAr:["لا، يجب مراجعة دليل الموديل","نعم، جميعها متطابقة","نعم إذا كان لونها واحداً"],optionsEn:["No, check the exact model manual","Yes, all are identical","Yes, if they have the same colour"],answer:0,whyAr:"تختلف الخصائص والتوصيلات حسب الموديل.",whyEn:"Features and connections vary by model."}
+ ]
+},
+{
+ id:"D002",college:"dynacord",level:3,duration:35,
+ ar:"مقدمة إلى Dynacord PowerMate",en:"Introduction to Dynacord PowerMate",
+ bodyAr:[
+  "PowerMate عائلة من المكسرات المزودة بمضخم قدرة مدمج في موديلات محددة. لذلك يجب التمييز بين مخارج الإشارة ومخارج السماعات ذات القدرة.",
+  "تختلف القدرة والممانعة والتوصيلات وطرق التشغيل بين الموديلات. لا توصل سماعة بمخرج قبل التأكد من نوع المخرج ومواصفاته.",
+  "التدريب المتقدم يجب أن يعتمد على دليل الموديل المحدد ومخطط التوصيل الرسمي."
+ ],
+ bodyEn:[
+  "PowerMate is a family that includes powered mixer models with an integrated power amplifier. Distinguish line-level outputs from powered loudspeaker outputs.",
+  "Power, impedance, connectors and operating modes vary by model. Never connect a loudspeaker until the output type and specifications are confirmed.",
+  "Advanced training must be based on the exact model's manual and official connection diagrams."
+ ],
+ objectivesAr:["فهم فكرة Powered Mixer.","التمييز بين Line Out وSpeaker Out.","التحقق من القدرة والممانعة."],
+ objectivesEn:["Understand powered mixers.","Distinguish line and speaker outputs.","Verify power and impedance."],
+ quiz:[
+  {qAr:"ما الخطر في الخلط بين Line Out وSpeaker Out؟",qEn:"What is the danger of confusing Line Out and Speaker Out?",optionsAr:["قد يحدث توصيل غير صحيح أو تلف للمعدات","لا يوجد أي اختلاف","يتغير لون الصوت فقط"],optionsEn:["Incorrect connection or equipment damage may occur","There is no difference","Only the sound colour changes"],answer:0,whyAr:"مستوى الإشارة وطبيعة الخرج مختلفان.",whyEn:"The signal level and output function are different."}
+ ]
+},
+{
+ id:"P001",college:"processing",level:4,duration:30,
+ ar:"المعادل الصوتي EQ",en:"Equalization",
+ bodyAr:[
+  "المعادل EQ يسمح بتغيير مستوى نطاقات ترددية محددة.",
+  "استخدم الاستماع والقياس معاً. لا توجد قاعدة تقول إن كل صوت يحتاج إلى رفع Bass أو خفض Treble.",
+  "ابدأ بتحديد المشكلة، ثم استخدم أقل تعديل يحقق الهدف، وانتبه إلى تأثير التعديلات المتراكمة."
+ ],
+ bodyEn:[
+  "An equalizer changes the level of selected frequency ranges.",
+  "Use listening and measurement together. There is no universal rule that every source needs more bass or less treble.",
+  "Identify the problem first, then apply the smallest useful adjustment and consider cumulative changes."
+ ],
+ objectivesAr:["فهم وظيفة EQ.","التفريق بين الترددات.","اتباع منهجية تعديل آمنة."],
+ objectivesEn:["Understand EQ.","Recognize frequency ranges.","Use a disciplined adjustment method."],
+ quiz:[
+  {qAr:"ما أفضل نقطة بداية عند استخدام EQ؟",qEn:"What is the best starting point for EQ?",optionsAr:["تحديد المشكلة أولاً","رفع جميع الترددات","خفض جميع الترددات"],optionsEn:["Identify the problem first","Boost every frequency","Cut every frequency"],answer:0,whyAr:"يجب أن يكون التعديل مرتبطاً بهدف واضح.",whyEn:"Every adjustment should solve an identified problem."}
+ ]
+},
+{
+ id:"P002",college:"processing",level:4,duration:35,
+ ar:"الضغط الديناميكي Compressor",en:"Dynamic Compression",
+ bodyAr:[
+  "Compressor يقلل تغيرات مستوى الإشارة عندما تتجاوز عتبة Threshold وفق إعداداته.",
+  "من أهم المعاملات Threshold وRatio وAttack وRelease وKnee وMake-up Gain.",
+  "الإعداد الخاطئ قد يجعل الصوت مسطحاً أو يسبب ضخاً مسموعاً. ابدأ بإعدادات معتدلة واستمع إلى النتيجة."
+ ],
+ bodyEn:[
+  "A compressor reduces signal-level variation when the signal crosses a threshold, according to its settings.",
+  "Key parameters include Threshold, Ratio, Attack, Release, Knee and Make-up Gain.",
+  "Poor settings can make audio sound lifeless or cause audible pumping. Start moderately and listen."
+ ],
+ objectivesAr:["شرح Threshold وRatio.","فهم Attack وRelease.","معرفة أثر الضغط المفرط."],
+ objectivesEn:["Explain threshold and ratio.","Understand attack and release.","Recognize over-compression."],
+ quiz:[
+  {qAr:"ماذا يحدد Threshold؟",qEn:"What does Threshold determine?",optionsAr:["المستوى الذي يبدأ عنده الضغط","سرعة انتشار الصوت","ممانعة السماعة"],optionsEn:["The level at which compression begins","Speed of sound","Speaker impedance"],answer:0,whyAr:"يحدد Threshold مستوى بدء عمل الضغط.",whyEn:"Threshold sets the level where compression begins."}
+ ]
+},
+{
+ id:"G001",college:"digital",level:5,duration:40,
+ ar:"مبادئ المكسر الرقمي",en:"Digital Mixer Fundamentals",
+ bodyAr:[
+  "المكسر الرقمي يعالج الإشارات رقمياً ويتيح إمكانات توجيه ومعالجة وتخزين إعدادات تختلف حسب الطراز.",
+  "تعلم الفرق بين Input Channel وBus وMatrix وDCA أو Group حسب تسمية الشركة المصنعة.",
+  "قبل تشغيل أي جهاز، ادرس بنية القوائم والطبقات وطريقة حفظ واستدعاء المشاهد Scene."
+ ],
+ bodyEn:[
+  "A digital mixer processes signals digitally and provides routing, processing and storage features that vary by model.",
+  "Learn the differences between input channels, buses, matrices and DCA or groups according to the manufacturer's terminology.",
+  "Study the menu structure, layers and scene save/recall process before operating a specific console."
+ ],
+ objectivesAr:["فهم البنية الرقمية.","تمييز القنوات والحافلات.","فهم المشاهد والطبقات."],
+ objectivesEn:["Understand digital architecture.","Distinguish channels and buses.","Understand scenes and layers."],
+ quiz:[
+  {qAr:"ما فائدة Scene في كثير من المكسرات الرقمية؟",qEn:"What is a Scene used for on many digital mixers?",optionsAr:["حفظ واستدعاء إعدادات","رفع قدرة الكهرباء","تغيير نوع الميكروفون"],optionsEn:["Store and recall settings","Increase mains power","Change microphone type"],answer:0,whyAr:"تسمح المشاهد باستدعاء إعدادات محفوظة وفق إمكانات الجهاز.",whyEn:"Scenes recall stored settings according to the console's capabilities."}
+ ]
+},
+{
+ id:"S001",college:"speakers",level:5,duration:35,
+ ar:"مبادئ السماعات",en:"Loudspeaker Fundamentals",
+ bodyAr:[
+  "السماعة تحول الطاقة الكهربائية إلى طاقة صوتية. يجب مطابقة السماعة ومكبر القدرة وفق القدرة والممانعة والحساسية وحدود التشغيل.",
+  "قيمة Watt وحدها لا تكفي للمقارنة؛ تحقق من طريقة تصنيف القدرة ومن SPL والحساسية والاستجابة الترددية.",
+  "في السماعات الفعالة Active يكون مضخم القدرة مدمجاً عادةً، بينما تحتاج السماعة السلبية Passive إلى مضخم خارجي مناسب."
+ ],
+ bodyEn:[
+  "A loudspeaker converts electrical energy into acoustic energy. Match the loudspeaker and amplifier using power, impedance, sensitivity and operating limits.",
+  "Wattage alone is not enough for comparison. Check the power rating method, SPL, sensitivity and frequency response.",
+  "Active loudspeakers usually contain an integrated amplifier, while passive loudspeakers require a suitable external amplifier."
+ ],
+ objectivesAr:["التمييز بين Active وPassive.","فهم القدرة والممانعة.","معرفة حدود مقارنة السماعات."],
+ objectivesEn:["Differentiate active and passive speakers.","Understand power and impedance.","Know the limits of loudspeaker comparisons."],
+ quiz:[
+  {qAr:"ماذا تحتاج السماعة السلبية عادةً؟",qEn:"What does a passive loudspeaker usually need?",optionsAr:["مضخم قدرة خارجي مناسب","بطارية هاتف","كابل شبكة فقط"],optionsEn:["A suitable external power amplifier","A phone battery","Only a network cable"],answer:0,whyAr:"السماعة السلبية لا تحتوي عادةً على مضخم مدمج.",whyEn:"A passive loudspeaker usually has no built-in amplifier."}
+ ]
+},
+{
+ id:"E001",college:"systems",level:6,duration:40,
+ ar:"تخطيط النظام الصوتي",en:"Sound System Planning",
+ bodyAr:[
+  "يبدأ تصميم النظام بتحديد استخدام المكان وأبعاده وارتفاعه وعدد المستمعين والضوضاء المحيطة ومتطلبات التغطية.",
+  "يجب تحديد مناطق التغطية ومواقع السماعات ونقاط التحكم ومسارات الكابلات ومصادر الطاقة.",
+  "لا تعتمد على عدد السماعات وحده؛ فالتوزيع والاتجاه والمسافة والتداخل والانعكاسات تؤثر في النتيجة."
+ ],
+ bodyEn:[
+  "System design begins with the venue use, dimensions, height, audience size, ambient noise and coverage requirements.",
+  "Define coverage zones, loudspeaker positions, control points, cable routes and power sources.",
+  "Do not rely on speaker count alone. Distribution, aiming, distance, interference and reflections affect performance."
+ ],
+ objectivesAr:["جمع بيانات الموقع.","تحديد مناطق التغطية.","إعداد مخطط أولي للنظام."],
+ objectivesEn:["Collect venue data.","Define coverage zones.","Prepare a preliminary system layout."],
+ quiz:[
+  {qAr:"ما أول خطوة في تخطيط النظام؟",qEn:"What is the first step in system planning?",optionsAr:["فهم المكان واحتياجاته","شراء أكبر مضخم","رفع الصوت إلى الحد الأقصى"],optionsEn:["Understand the venue and its needs","Buy the largest amplifier","Turn everything to maximum"],answer:0,whyAr:"التصميم يبدأ بمتطلبات الموقع وليس بشراء الأجهزة.",whyEn:"Design begins with venue requirements, not equipment purchases."}
+ ]
+},
+{
+ id:"R001",college:"acoustics",level:6,duration:35,
+ ar:"الصدى والانعكاسات",en:"Reverberation & Reflections",
+ bodyAr:[
+  "تنعكس الموجات الصوتية عند اصطدامها بالأسطح. تتأثر النتيجة بحجم المكان وشكل الأسطح وموادها.",
+  "قد يؤدي زمن الارتداد الطويل إلى ضعف وضوح الكلام، خصوصاً في القاعات الكبيرة أو كثيرة الأسطح العاكسة.",
+  "المعالجة الصوتية ليست مجرد وضع إسفنج عشوائي؛ بل تحتاج إلى فهم نطاقات التردد ومواضع الانعكاس والهدف المطلوب."
+ ],
+ bodyEn:[
+  "Sound waves reflect when they encounter surfaces. The result depends on room size, geometry and materials.",
+  "Long reverberation can reduce speech intelligibility, especially in large or highly reflective rooms.",
+  "Acoustic treatment is not simply placing foam randomly. It requires understanding frequency ranges, reflection points and the intended outcome."
+ ],
+ objectivesAr:["شرح الانعكاس.","فهم أثر زمن الارتداد.","تمييز المعالجة عن العزل."],
+ objectivesEn:["Explain reflection.","Understand reverberation time.","Distinguish treatment from sound isolation."],
+ quiz:[
+  {qAr:"ما أثر الارتداد الطويل على الكلام غالباً؟",qEn:"What is a common effect of long reverberation on speech?",optionsAr:["انخفاض وضوح الكلام","زيادة وضوح كل الكلمات","إلغاء الضوضاء تماماً"],optionsEn:["Reduced speech intelligibility","Improved intelligibility of every word","Complete noise cancellation"],answer:0,whyAr:"تداخل الانعكاسات قد يقلل وضوح الكلام.",whyEn:"Overlapping reflections can reduce speech intelligibility."}
+ ]
+},
+{
+ id:"L001",college:"live",level:7,duration:45,
+ ar:"إعداد فعالية صوتية",en:"Preparing a Live Event",
+ bodyAr:[
+  "ابدأ بملف متطلبات الفعالية: نوعها، عدد الجمهور، البرنامج، مصادر الصوت، المسرح، مناطق التغطية، ومتطلبات التسجيل أو البث.",
+  "أعد Input List وStage Plot وPatch List، ثم تحقق من الطاقة والكابلات والحوامل وسلامة التثبيت.",
+  "نفذ Line Check لكل قناة، ثم Sound Check، ثم راقب مستويات الإشارة والـFeedback أثناء العرض."
+ ],
+ bodyEn:[
+  "Start with an event brief: event type, audience size, programme, audio sources, stage, coverage zones and recording or broadcast needs.",
+  "Prepare an input list, stage plot and patch list. Verify power, cables, stands and rigging safety.",
+  "Perform a line check for every channel, then soundcheck, and monitor signal levels and feedback during the show."
+ ],
+ objectivesAr:["إعداد Input List.","فهم Stage Plot وPatch List.","تنظيم Line Check وSound Check."],
+ objectivesEn:["Prepare an input list.","Understand stage and patch plots.","Organize line checks and soundchecks."],
+ quiz:[
+  {qAr:"ما الهدف من Line Check؟",qEn:"What is the purpose of a line check?",optionsAr:["التأكد من وصول الإشارة عبر كل مسار","اختيار لون الستارة","تحديد عدد المقاعد"],optionsEn:["Verify signal through each path","Choose curtain colour","Count seats"],answer:0,whyAr:"يفحص Line Check سلامة مسار الإشارة قبل العرض.",whyEn:"A line check verifies signal paths before the show."}
+ ]
+},
+{
+ id:"MS001",college:"venues",level:7,duration:45,
+ ar:"تصميم نظام صوت مسجد",en:"Mosque Sound System Design",
+ bodyAr:[
+  "يجب تقسيم المسجد إلى مناطق: المصلى الرئيسي، مصلى النساء، المداخل، الساحات، وأي ملاحق صوتية.",
+  "يختلف اختيار السماعات بين السماعات السقفية والجدارية والبوقية والخطية بحسب المسافة والارتفاع والبيئة.",
+  "الأولوية لوضوح الكلام وتجانس التغطية والتحكم المستقل بالمناطق، مع مراعاة التغذية الاحتياطية وسلامة التوصيلات.",
+  "يجب قياس الأداء ميدانياً بعد التركيب، وضبط مستويات المناطق والتأخيرات عند الحاجة."
+ ],
+ bodyEn:[
+  "Divide the mosque into zones: main prayer hall, women's area, entrances, courtyards and other audio spaces.",
+  "Ceiling, wall-mounted, horn and column loudspeakers serve different distances, heights and environments.",
+  "Prioritize speech intelligibility, even coverage and independent zone control, while considering backup power and safe wiring.",
+  "Measure the installed system and adjust zone levels and delays where necessary."
+ ],
+ objectivesAr:["تقسيم المسجد إلى مناطق.","اختيار نوع السماعة حسب الموقع.","تحقيق وضوح الكلام."],
+ objectivesEn:["Zone the mosque.","Select loudspeaker types by location.","Achieve speech intelligibility."],
+ quiz:[
+  {qAr:"ما الهدف الأهم في نظام خطبة المسجد؟",qEn:"What is a key priority for mosque sermon sound?",optionsAr:["وضوح الكلام وتجانس التغطية","أعلى Bass ممكن","تشغيل كل المناطق بنفس المستوى دائماً"],optionsEn:["Speech intelligibility and even coverage","Maximum possible bass","Always running every zone at the same level"],answer:0,whyAr:"وضوح الكلام هو أساس نجاح نظام الخطبة.",whyEn:"Speech intelligibility is central to sermon sound."}
+ ]
+},
+{
+ id:"H001",college:"venues",level:7,duration:40,
+ ar:"أنظمة القاعات والمؤتمرات",en:"Halls & Conference Systems",
+ bodyAr:[
+  "ابدأ بتحديد عدد المتحدثين ومواقعهم ونوع الجلسة والحاجة إلى النقاش أو التصويت أو الترجمة أو التسجيل.",
+  "قد تحتاج القاعة إلى ميكروفونات طاولة أو وحدات مؤتمر، ومكبرات موزعة، ومكبرات سقفية أو جدارية، ونظام تحكم.",
+  "يجب منع التغذية الراجعة بين الميكروفونات والسماعات، وضبط مستوى الكلام وتوزيع الصوت وفق مناطق الجلوس."
+ ],
+ bodyEn:[
+  "Identify the number and location of speakers, meeting format, and needs for discussion, voting, interpretation or recording.",
+  "A room may need tabletop microphones or conference units, distributed loudspeakers, ceiling or wall speakers and control systems.",
+  "Prevent feedback between microphones and loudspeakers, and distribute speech according to seating zones."
+ ],
+ objectivesAr:["تحليل متطلبات القاعة.","اختيار نظام المؤتمر.","فهم منع التغذية الراجعة."],
+ objectivesEn:["Analyze room requirements.","Select a conference system.","Understand feedback prevention."],
+ quiz:[
+  {qAr:"ما الذي يجب تحليله قبل اختيار نظام المؤتمر؟",qEn:"What should be analyzed before choosing a conference system?",optionsAr:["عدد المتحدثين وطبيعة الاجتماع","لون الجدران فقط","نوع أرضية المدخل فقط"],optionsEn:["Number of speakers and meeting format","Wall colour only","Entrance floor type only"],answer:0,whyAr:"عدد المتحدثين وطبيعة الجلسة يحددان متطلبات النظام.",whyEn:"Speaker count and meeting format determine system requirements."}
+ ]
+},
+{
+ id:"N001",college:"network",level:8,duration:40,
+ ar:"مقدمة إلى الصوت الشبكي",en:"Network Audio Introduction",
+ bodyAr:[
+  "تسمح أنظمة الصوت الشبكي بنقل قنوات صوتية عبر بنية شبكة بيانات وفق بروتوكولات محددة.",
+  "يجب دراسة التوافق بين الأجهزة، ومتطلبات الشبكة، والتوقيت والمزامنة، وإدارة عناوين IP.",
+  "لا تفترض أن كل جهاز Ethernet يدعم Dante أو AES67؛ تحقق من اعتماد الجهاز ووثائقه."
+ ],
+ bodyEn:[
+  "Network audio transports audio channels over data networks using defined protocols.",
+  "Study device compatibility, network requirements, timing and synchronization, and IP addressing.",
+  "Do not assume every Ethernet device supports Dante or AES67. Verify certification and documentation."
+ ],
+ objectivesAr:["فهم فكرة الصوت الشبكي.","معرفة أهمية التوافق.","التحقق من البروتوكول المدعوم."],
+ objectivesEn:["Understand network audio.","Recognize compatibility requirements.","Verify supported protocols."],
+ quiz:[
+  {qAr:"هل كل جهاز يحتوي على منفذ Ethernet يدعم Dante؟",qEn:"Does every device with an Ethernet port support Dante?",optionsAr:["لا، يجب التحقق من دعم البروتوكول","نعم دائماً","فقط إذا كان الكابل أزرق"],optionsEn:["No, verify protocol support","Yes, always","Only if the cable is blue"],answer:0,whyAr:"منفذ Ethernet لا يعني تلقائياً دعم Dante.",whyEn:"An Ethernet port does not automatically mean Dante support."}
+ ]
 }
+];
 
-function escapeHTML(value){
- return String(value).replace(/[&<>"']/g,c=>({
-  "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
- }[c]));
+/* =========================
+   3. NAVIGATION AND HELPERS
+========================= */
+function navigate(page){
+  currentPage=page;
+  document.querySelectorAll(".nav-btn").forEach(b=>{
+    b.classList.toggle("active",b.dataset.page===page);
+  });
+  render();
+  window.scrollTo({top:0,behavior:"smooth"});
 }
-
-/* ==================================
-   5. PAGE RENDERING ENGINE
-================================== */
-
-let currentPage="dashboard";
-
+function getLesson(id){return lessons.find(x=>x.id===id);}
+function getCollege(id){return colleges.find(x=>x.id===id);}
+function localized(obj,key){
+  return obj[(key||"")+(state.language==="ar"?"Ar":"En")] || "";
+}
+function completionRate(){
+  return lessons.length ? Math.round(state.completed.length/lessons.length*100) : 0;
+}
+function lessonCount(collegeId){
+  return lessons.filter(x=>x.college===collegeId).length;
+}
 function render(){
- const root=document.getElementById("pageContent");
- document.documentElement.lang=state.language;
- document.documentElement.dir=isArabic()?"rtl":"ltr";
-
- document.querySelectorAll("[data-i18n]").forEach(el=>{
-  el.textContent=t(el.dataset.i18n);
- });
-
- document.querySelectorAll(".nav-btn").forEach(btn=>{
-  btn.classList.toggle("active",btn.dataset.page===currentPage);
- });
-
- const pages={
-  dashboard:renderDashboard,
-  curriculum:renderCurriculum,
-  levels:renderLevels,
-  lessons:renderLessons,
-  lab:renderLab,
-  events:renderEvents,
-  engineering:renderEngineering,
-  exams:renderExams,
-  projects:renderProjects,
-  library:renderLibrary,
-  profile:renderProfile
- };
-
- root.innerHTML=(pages[currentPage]||renderDashboard)();
- bindDynamicActions();
+  applyLanguage();
+  const pages={
+    dashboard:renderDashboard,
+    curriculum:renderCurriculum,
+    levels:renderLevels,
+    lab:renderLab,
+    events:renderEvents,
+    engineering:renderEngineering,
+    progress:renderProgress
+  };
+  document.getElementById("pageContent").innerHTML=(pages[currentPage]||renderDashboard)();
 }
 
+/* =========================
+   4. DASHBOARD
+========================= */
 function renderDashboard(){
- const progress=state.completed.length;
- const percent=Math.min(100,Math.round(progress/Math.max(1,12)*100));
-
+ const done=state.completed.length;
  return `
  <section class="hero">
-  <span class="tag">PROFESSIONAL EDUCATION</span>
-  <h1>${t("heroTitle")}</h1>
-  <p>${t("heroText")}</p>
-  <button class="btn primary" data-go="curriculum">${t("start")} →</button>
+  <div class="eyebrow">${t("أكاديمية احترافية متعددة المستويات","PROFESSIONAL MULTI-LEVEL ACADEMY")}</div>
+  <h2>${t("من أساسيات الصوت إلى هندسة الأنظمة وتشغيل أكبر الفعاليات","From Audio Fundamentals to System Engineering and Live Production")}</h2>
+  <p>${t("رحلة تعليمية تجمع المعرفة النظرية والتدريب العملي والتطبيق الميداني، من المكسر التناظري إلى الأنظمة الرقمية والشبكية.","A learning journey combining theory, hands-on practice and field application—from analog consoles to digital and networked systems.")}</p>
+  <div class="hero-actions">
+   <button class="btn primary" onclick="navigate('curriculum')">${t("ابدأ التعلم","Start Learning")}</button>
+   <button class="btn" onclick="navigate('lab')">${t("افتح مختبر المكسر","Open Mixer Lab")}</button>
+  </div>
  </section>
-
- <div class="section-head"><h3>${t("progress")}</h3></div>
-
+ <div class="stats">
+  <div class="stat"><strong>${colleges.length}</strong><span>${t("تخصصاً تعليمياً","Learning disciplines")}</span></div>
+  <div class="stat"><strong>${lessons.length}</strong><span>${t("درساً تأسيسياً","Foundation lessons")}</span></div>
+  <div class="stat"><strong>${done}</strong><span>${t("دروس مكتملة","Completed lessons")}</span></div>
+  <div class="stat"><strong>${completionRate()}%</strong><span>${t("نسبة الإنجاز","Completion")}</span></div>
+ </div>
+ <div class="section-head"><h2>${t("تابع رحلتك التعليمية","Continue Your Learning")}</h2><span class="muted">${done}/${lessons.length}</span></div>
+ <div class="progress-track"><div class="progress-fill" style="width:${completionRate()}%"></div></div>
+ <div class="section-head"><h2>${t("التخصصات الرئيسية","Main Disciplines")}</h2><button class="btn" onclick="navigate('curriculum')">${t("كل المناهج","All Courses")}</button></div>
  <div class="grid">
-  <div class="card">
-   <div class="stat"><span class="muted">${t("completed")}</span><span class="stat-icon">✅</span></div>
-   <strong>${progress}</strong><p>${t("lessons")}</p>
-  </div>
-  <div class="card">
-   <div class="stat"><span class="muted">${t("totalLessons")}</span><span class="stat-icon">📚</span></div>
-   <strong>12+</strong><p>${t("colleges")}</p>
-  </div>
-  <div class="card">
-   <div class="stat"><span class="muted">${t("score")}</span><span class="stat-icon">🏆</span></div>
-   <strong>—</strong><p>Exam system pending</p>
-  </div>
-  <div class="card">
-   <div class="stat"><span class="muted">${t("stages")}</span><span class="stat-icon">🎓</span></div>
-   <strong>10</strong><p>Academic Levels</p>
-  </div>
- </div>
-
- <div class="section-head"><h3>${t("colleges")}</h3>
- <button class="btn" data-go="curriculum">${t("open")}</button></div>
- <div class="course-grid">
- ${colleges.slice(0,6).map(c=>courseCard(c)).join("")}
- </div>
-
- <div class="section-head"><h3>${t("continue")}</h3></div>
- <div class="panel">
-  <div class="progress"><span style="width:${percent}%"></span></div>
-  <p class="muted">${percent}%</p>
-  <button class="btn primary" data-go="lessons">${t("start")}</button>
+ ${colleges.slice(0,6).map(c=>`
+ <article class="card">
+  <div class="icon">${c.icon}</div>
+  <h3>${state.language==="ar"?c.ar:c.en}</h3>
+  <p>${state.language==="ar"?c.descAr:c.descEn}</p>
+  <div class="muted">${lessonCount(c.id)} ${t("دروس متاحة","available lessons")}</div>
+  <div class="card-action"><button class="btn" onclick="openCollege('${c.id}')">${t("استكشف","Explore")}</button></div>
+ </article>`).join("")}
  </div>`;
 }
 
-function courseCard(c){
- return `<div class="course-card" data-course="${c.id}" role="button" tabindex="0">
-  <div class="course-icon">${c.icon}</div>
-  <h4>${courseName(c)}</h4>
-  <p>${isArabic()?c.desc:c.en}</p>
-  <span class="tag">${t("open")} ←</span>
- </div>`;
-}
-
+/* =========================
+   5. CURRICULUM
+========================= */
 function renderCurriculum(){
- return `<h1 class="page-title">${t("colleges")}</h1>
- <p class="muted">${t("heroText")}</p>
- <div class="course-grid">${colleges.map(courseCard).join("")}</div>`;
+ return `
+ <div class="section-head"><h2>${t("المناهج التعليمية","Curriculum")}</h2><span class="tag">${colleges.length} ${t("تخصصاً","disciplines")}</span></div>
+ <p class="muted">${t("اختر تخصصاً لعرض دروسه. المحتوى الحالي تأسيسي، ويمكن توسيعه إلى وحدات متقدمة ومشاريع تطبيقية.","Choose a discipline to view its lessons. The current content is foundational and can be expanded into advanced units and practical projects.")}</p>
+ <div class="grid">
+ ${colleges.map(c=>`
+ <article class="card">
+  <div class="icon">${c.icon}</div>
+  <h3>${state.language==="ar"?c.ar:c.en}</h3>
+  <p>${state.language==="ar"?c.descAr:c.descEn}</p>
+  <div class="toolbar"><span class="tag">${lessonCount(c.id)} ${t("دروس","lessons")}</span><span class="tag">${t("المستوى","Level")} ${Math.min(...lessons.filter(l=>l.college===c.id).map(l=>l.level))||1}</span></div>
+  <div class="card-action"><button class="btn" onclick="openCollege('${c.id}')">${t("فتح المنهج","Open Course")}</button></div>
+ </article>`).join("")}
+ </div>`;
 }
-
-function renderLevels(){
- return `<h1 class="page-title">${t("levelsTitle")}</h1>
- <div class="panel">
- ${levels.map((l,i)=>`
- <div class="lesson-item">
-  <div><span class="tag">LEVEL ${String(i+1).padStart(2,"0")}</span>
-  <strong>${isArabic()?l[1]:l[0]}</strong>
-  <p class="muted">${l[0]}</p></div>
-  <span>🔒</span>
- </div>`).join("")}
+function openCollege(id){
+ const c=getCollege(id);
+ const items=lessons.filter(l=>l.college===id);
+ document.getElementById("pageContent").innerHTML=`
+ <button class="btn" onclick="navigate('curriculum')">← ${t("عودة إلى المناهج","Back to Curriculum")}</button>
+ <div class="section-head"><h2>${c.icon} ${state.language==="ar"?c.ar:c.en}</h2></div>
+ <p class="muted">${state.language==="ar"?c.descAr:c.descEn}</p>
+ <div class="list">
+ ${items.map(l=>lessonRow(l)).join("")||`<div class="empty">${t("ستضاف الدروس التفصيلية لهذا التخصص في المرحلة التالية.","Detailed lessons for this discipline will be added in the next stage.")}</div>`}
+ </div>`;
+}
+function lessonRow(l){
+ const done=state.completed.includes(l.id);
+ return `<div class="lesson-row">
+  <div><strong>${esc(state.language==="ar"?l.ar:l.en)}</strong><small>${l.id} · ${l.duration} ${t("دقيقة","min")} · ${t("المستوى","Level")} ${l.level}</small></div>
+  <div class="toolbar"><span class="tag">${done?t("مكتمل ✓","Completed ✓"):t("لم يبدأ","Not started")}</span><button class="btn ${done?"":"primary"}" onclick="openLesson('${l.id}')">${t("افتح الدرس","Open Lesson")}</button></div>
  </div>`;
 }
 
-function renderLessons(){
- return `<h1 class="page-title">${t("lessons")}</h1>
- <p class="muted">${t("noLessons")}</p>
- <div class="panel">
-  <h3>LEVEL 01 — ${isArabic()?"التأسيس":"Foundation"}</h3>
-  <div id="lessonList" class="lesson-list">
-   ${[
-    ["L001","مقدمة في هندسة الصوت","Introduction to Sound Engineering"],
-    ["L002","التردد والسعة والطول الموجي","Frequency, Amplitude & Wavelength"],
-    ["L003","الديسيبل وضغط الصوت","Decibels & Sound Pressure"],
-    ["L004","الإشارة الصوتية","Audio Signal Fundamentals"]
-   ].map((l,i)=>`
-    <div class="lesson-item">
-     <div><span class="tag">${l[0]}</span>
-     <strong>${isArabic()?l[1]:l[2]}</strong></div>
-     <button class="btn" data-lesson="${l[0]}">${t("startLesson")}</button>
-    </div>`).join("")}
+/* =========================
+   6. LESSON VIEW AND QUIZ
+========================= */
+function openLesson(id){
+ currentLessonId=id;quizAnswers={};
+ const l=getLesson(id);
+ if(!l)return;
+ const body=state.language==="ar"?l.bodyAr:l.bodyEn;
+ const objectives=state.language==="ar"?l.objectivesAr:l.objectivesEn;
+ const quiz=l.quiz||[];
+ document.getElementById("pageContent").innerHTML=`
+ <div class="lesson-content">
+ <button class="btn" onclick="openCollege('${l.college}')">← ${t("عودة إلى التخصص","Back to Discipline")}</button>
+ <div class="section-head"><span class="tag">${l.id} · ${t("المستوى","Level")} ${l.level}</span><span class="muted">${l.duration} ${t("دقيقة","min")}</span></div>
+ <h2>${esc(state.language==="ar"?l.ar:l.en)}</h2>
+ <div class="card">
+  <h3>${t("أهداف التعلم","Learning Objectives")}</h3>
+  <ul>${objectives.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>
+ </div>
+ <div class="card" style="margin-top:14px">
+  ${body.map(p=>`<p>${esc(p)}</p>`).join("")}
+ </div>
+ <div class="callout">${t("ملاحظة تدريبية: اقرأ المحتوى ثم أجب عن الاختبار. لا تعتمد على الحفظ وحده؛ حاول ربط المفاهيم بالمعدات الحقيقية.","Training note: Read the lesson and complete the quiz. Do not rely on memorization alone; connect the concepts to real equipment.")}</div>
+ ${quiz.length?`
+ <div class="section-head"><h3>${t("اختبار الدرس","Lesson Quiz")}</h3></div>
+ <div id="quizArea">${quiz.map((q,i)=>`
+ <div class="card" style="margin-bottom:12px">
+  <strong>${i+1}. ${esc(state.language==="ar"?q.qAr:q.qEn)}</strong>
+  ${(state.language==="ar"?q.optionsAr:q.optionsEn).map((o,j)=>`
+   <button class="quiz-option" id="q${i}o${j}" onclick="chooseAnswer(${i},${j})">${esc(o)}</button>
+  `).join("")}
+  <div id="q${i}feedback" class="muted"></div>
+ </div>`).join("")}
+ <button class="btn primary" onclick="submitQuiz('${l.id}')">${t("تصحيح الاختبار","Submit Quiz")}</button>
+ <div id="quizResult"></div>
+ </div>`:`<div class="callout">${t("لا يوجد اختبار لهذا الدرس حالياً.","No quiz is available for this lesson yet.")}</div>`}
+ </div>`;
+}
+function chooseAnswer(qi,oi){
+ quizAnswers[qi]=oi;
+ const l=getLesson(currentLessonId);
+ l.quiz[qi].optionsAr.forEach((_,j)=>{
+  const el=document.getElementById(`q${qi}o${j}`);
+  if(el)el.classList.toggle("selected",j===oi);
+ });
+}
+function submitQuiz(id){
+ const l=getLesson(id);
+ const total=l.quiz.length;
+ if(Object.keys(quizAnswers).length!==total){
+  alert(t("أجب عن جميع الأسئلة أولاً.","Answer all questions first."));
+  return;
+ }
+ let score=0;
+ l.quiz.forEach((q,i)=>{
+  const correct=quizAnswers[i]===q.answer;
+  if(correct)score++;
+  const chosen=document.getElementById(`q${i}o${quizAnswers[i]}`);
+  const right=document.getElementById(`q${i}o${q.answer}`);
+  if(chosen)chosen.classList.add(correct?"correct":"wrong");
+  if(right)right.classList.add("correct");
+  const feedback=document.getElementById(`q${i}feedback`);
+  feedback.textContent=(correct?"✓ ":"✕ ")+(state.language==="ar"?q.whyAr:q.whyEn);
+ });
+ const percent=Math.round(score/total*100);
+ state.attempts[id]=(state.attempts[id]||0)+1;
+ state.scores[id]=Math.max(state.scores[id]||0,percent);
+ if(percent>=70&&!state.completed.includes(id))state.completed.push(id);
+ saveState();
+ document.getElementById("quizResult").innerHTML=`
+ <div class="callout">
+  <strong>${t("نتيجتك:","Your score:")} ${percent}%</strong><br>
+  ${percent>=70?t("أحسنت! اجتزت الاختبار وأصبح الدرس مكتملاً.","Well done! You passed and the lesson is complete."):t("لم تصل إلى 70%. راجع الدرس وحاول مرة أخرى.","You scored below 70%. Review the lesson and try again.")}
+ </div>
+ <button class="btn" onclick="navigate('progress')">${t("عرض تقدمي","View Progress")}</button>`;
+}
+
+/* =========================
+   7. LEVELS
+========================= */
+const levels=[
+ ["التأسيس العلمي","Scientific Foundations","1–2"],
+ ["تشغيل المعدات","Equipment Operation","2–3"],
+ ["المكسرات التناظرية","Analog Consoles","3–4"],
+ ["معالجة الصوت","Audio Processing","4–5"],
+ ["الأنظمة الرقمية","Digital Systems","5–6"],
+ ["هندسة الأنظمة والصوتيات","System Engineering & Acoustics","6–7"],
+ ["تشغيل الفعاليات","Live Production","7–8"],
+ ["الصوت الشبكي","Network Audio","8–9"],
+ ["التصميم المتقدم","Advanced Design","9"],
+ ["الاحتراف والمشاريع","Professional Projects","10"]
+];
+function renderLevels(){
+ return `<div class="section-head"><h2>${t("المسار التعليمي","Learning Path")}</h2></div>
+ <p class="muted">${t("هذا ترتيب تعليمي مقترح. فتح المستويات هنا لا يعني أن جميع متطلباتها أو شهاداتها قد تم اعتمادها بعد.","This is a proposed learning sequence. Opening a level does not mean its prerequisites or certifications have been formally accredited.")}</p>
+ <div class="list">${levels.map((x,i)=>`
+ <div class="lesson-row">
+  <div><strong>${t("المستوى","Level")} ${i+1}: ${state.language==="ar"?x[0]:x[1]}</strong>
+  <small>${t("المراحل المرتبطة","Related stages")}: ${x[2]}</small></div>
+  <span class="tag">${i===0?t("تأسيسي","Foundation"):t("تدريجي ومتقدم","Progressive")}</span>
+ </div>`).join("")}</div>`;
+}
+
+/* =========================
+   8. ANALOG MIXER LAB
+========================= */
+function renderLab(){
+ const m=state.mixer;
+ return `
+ <div class="section-head"><h2>${t("مختبر المكسر التناظري","Analog Mixer Lab")}</h2><span class="tag">${t("محاكاة تعليمية","Educational Simulation")}</span></div>
+ <p class="muted">${t("جرّب تغيير إعدادات القناة ولاحظ كيف تتغير قراءة النموذج التعليمي لمسار الإشارة. هذه ليست معالجة صوت حقيقية ولا تمثل لوحة مكسر بعينها.","Change channel settings and observe the educational signal-path model. This is not real audio processing and does not represent a specific console.")}</p>
+ <div class="card">
+  <div class="toolbar"><strong>${t("القناة الأولى · ميكروفون افتراضي","Channel 1 · Virtual Microphone")}</strong><span class="tag">${t("Mono Input","Mono Input")}</span></div>
+  <div class="lab-grid" style="margin-top:15px">
+   ${renderMixerControl("gain",t("Gain","Gain"),-20,40,1,"dB")}
+   ${renderMixerControl("high",t("High EQ","High EQ"),-15,15,1,"dB")}
+   ${renderMixerControl("mid",t("Mid EQ","Mid EQ"),-15,15,1,"dB")}
+   ${renderMixerControl("low",t("Low EQ","Low EQ"),-15,15,1,"dB")}
+   ${renderMixerControl("aux",t("Aux Send","Aux Send"),0,100,1,"%")}
+   ${renderMixerControl("fader",t("Channel Fader","Channel Fader"),-60,10,1,"dB")}
+  </div>
+  <div class="signal-box">
+   <h3>${t("مؤشر مستوى الإشارة الافتراضي","Virtual Signal Meter")}</h3>
+   <div class="meter"><div class="meter-fill" id="signalMeter" style="width:${meterValue()}%"></div></div>
+   <div class="toolbar" style="justify-content:space-between">
+    <span>${t("مستوى النموذج","Model Level")}</span><strong id="meterLabel">${meterValue()}%</strong>
+   </div>
+   <div class="signal-flow" style="margin-top:15px">
+    <span class="signal-node">INPUT</span><span class="signal-arrow">→</span>
+    <span class="signal-node">GAIN</span><span class="signal-arrow">→</span>
+    <span class="signal-node">EQ</span><span class="signal-arrow">→</span>
+    <span class="signal-node">FADER</span><span class="signal-arrow">→</span>
+    <span class="signal-node">MAIN MIX</span>
+   </div>
+   <p class="muted" id="labExplanation">${labExplanation()}</p>
+  </div>
+  <button class="btn" style="margin-top:14px" onclick="resetMixer()">${t("إعادة إعدادات المختبر","Reset Lab")}</button>
+ </div>
+ <div class="section-head"><h3>${t("تمرين عملي","Practical Exercise")}</h3></div>
+ <div class="card">
+  <p>${t("اضبط Gain على مستوى معتدل، واترك EQ على الصفر، ثم ارفع Fader تدريجياً. راقب المؤشر ولا ترفع جميع الإعدادات إلى أقصى حد.","Set Gain moderately, leave EQ flat, then raise the fader gradually. Watch the meter and avoid setting every control to maximum.")}</p>
+  <p class="muted">${t("تذكّر: في المكسر الحقيقي يجب مراقبة مؤشرات Peak وقياس الإشارة والاستماع إليها، وليس الاعتماد على هذا المؤشر الافتراضي.","Remember: on a real mixer, monitor peak indicators, measure the signal and listen. Do not rely on this virtual meter.")}</p>
+ </div>`;
+}
+function renderMixerControl(key,label,min,max,step,unit){
+ const value=state.mixer[key];
+ return `<div class="channel">
+  <h3>${label}</h3>
+  <div class="knob" id="knob-${key}">${value}${unit}</div>
+  <div class="control">
+   <label><span>${min}${unit}</span><strong>${label}</strong><span>${max}${unit}</span></label>
+   <input type="range" min="${min}" max="${max}" step="${step}" value="${value}" oninput="updateMixer('${key}',this.value)">
   </div>
  </div>`;
 }
-
-function renderLab(){
- return `<h1 class="page-title">${t("labTitle")}</h1>
- <p class="muted">${t("labText")}</p>
- <div class="course-grid">
- ${[
- ["🎚️","Analog Mixer Simulator","محاكاة المكسر التناظري"],
- ["💻","Digital Mixer Simulator","محاكاة المكسر الرقمي"],
- ["📊","EQ & Frequency Lab","مختبر الترددات والمعادلة"],
- ["🔊","Speaker Coverage Lab","مختبر تغطية السماعات"],
- ["🎤","Feedback Trainer","التدريب على اكتشاف Feedback"],
- ["📡","Signal Flow Lab","مختبر مسارات الإشارة"]
- ].map(x=>`<div class="course-card">
- <div class="course-icon">${x[0]}</div>
- <h4>${isArabic()?x[2]:x[1]}</h4>
- <p>${t("coming")}</p>
- <span class="tag">PLANNED MODULE</span>
- </div>`).join("")}
- </div>`;
+function meterValue(){
+ const m=state.mixer;
+ const raw=45 + m.gain*1.1 + m.fader*1.0 + (m.high+m.mid+m.low)*0.35;
+ return Math.max(0,Math.min(100,Math.round(raw)));
 }
-
-function genericPage(title,description,items){
- return `<h1 class="page-title">${title}</h1>
- <p class="muted">${description}</p>
- <div class="course-grid">
- ${items.map(x=>`<div class="course-card">
- <div class="course-icon">${x[0]}</div>
- <h4>${isArabic()?x[1]:x[2]}</h4>
- <p>${t("coming")}</p></div>`).join("")}
- </div>`;
+function labExplanation(){
+ const value=meterValue();
+ if(value>85)return t("المستوى الافتراضي مرتفع جداً. في الواقع افحص احتمال clipping وخفّض مستوى الإشارة عند المرحلة المناسبة.","The virtual level is very high. In practice, check for clipping and reduce level at the appropriate stage.");
+ if(value<20)return t("المستوى الافتراضي منخفض. تحقق من Gain ومسار الإشارة ومستوى Fader.","The virtual level is low. Check gain, signal path and fader.");
+ return t("المستوى الافتراضي ضمن النطاق المتوسط في هذا النموذج التعليمي.","The virtual level is within the middle range of this educational model.");
 }
-
-function renderEvents(){
- return genericPage(t("eventsTitle"),t("heroText"),[
- ["🎵","الحفلات الموسيقية","Concert Production"],
- ["💍","الأعراس والمناسبات","Weddings & Events"],
- ["🏢","المؤتمرات والمعارض","Conferences & Exhibitions"],
- ["🎭","المسرح والعروض","Theatre & Shows"],
- ["🏟️","الملاعب والفعاليات الكبرى","Stadium & Major Events"]
- ]);
-}
-
-function renderEngineering(){
- return genericPage(t("engineeringTitle"),t("heroText"),[
- ["🔊","أنظمة السماعات","Loudspeaker Systems"],
- ["📐","حسابات SPL والتغطية","SPL & Coverage"],
- ["🎚️","DSP والمعالجات","DSP & Processing"],
- ["📏","القياس والضبط","Measurement & Tuning"],
- ["🌐","الشبكات الصوتية","Audio Networking"]
- ]);
-}
-
-function renderExams(){
- return `<h1 class="page-title">${t("examsTitle")}</h1>
- <div class="panel">
- <h3>Assessment Center</h3>
- <p class="muted">${t("coming")}</p>
- </div>`;
-}
-
-function renderProjects(){
- return genericPage(t("projectsTitle"),t("heroText"),[
- ["🕌","تصميم نظام صوت مسجد","Mosque Audio Design"],
- ["🏛️","تصميم قاعة مؤتمرات","Conference Hall Design"],
- ["🎤","تنفيذ فعالية مباشرة","Live Event Production"],
- ["🏟️","تصميم نظام ملعب","Stadium Sound System"]
- ]);
-}
-
-function renderLibrary(){
- return `<h1 class="page-title">${t("libraryTitle")}</h1>
- <p class="muted">${t("coming")}</p>
- <div class="course-grid">
- ${["Dynacord CMS","Dynacord PowerMate","Behringer X32","Midas M32","Yamaha Digital","Allen & Heath","DiGiCo","Shure Microphones"].map(x=>`
- <div class="course-card"><div class="course-icon">🎛️</div>
- <h4>${x}</h4><p>Manuals, specifications and training.</p>
- </div>`).join("")}
- </div>`;
-}
-
-function renderProfile(){
- return `<h1 class="page-title">${t("profileTitle")}</h1>
- <div class="panel">
- <label>${isArabic()?"اسم الطالب":"Student Name"}</label><br><br>
- <input id="studentName" value="${escapeHTML(state.studentName)}" placeholder="${isArabic()?"اكتب اسمك":"Enter your name"}">
- <button class="btn primary" id="saveProfile">${isArabic()?"حفظ":"Save"}</button>
- <div class="section-head"><h3>${t("progress")}</h3></div>
- <p>${state.completed.length} ${t("completed")}</p>
- </div>`;
-}
-
-/* ==================================
-   6. NAVIGATION
-================================== */
-
-document.querySelectorAll(".nav-btn").forEach(btn=>{
- btn.addEventListener("click",()=>{
-  currentPage=btn.dataset.page;
-  document.getElementById("sidebar").classList.remove("open");
-  render();
- });
-});
-
-document.getElementById("pageContent").addEventListener("click",e=>{
- const go=e.target.closest("[data-go]");
- if(go){
-  currentPage=go.dataset.go;
-  render();
-  return;
- }
-
- const course=e.target.closest("[data-course]");
- if(course){
-  currentPage="lessons";
-  render();
-  return;
- }
-
- const lesson=e.target.closest("[data-lesson]");
- if(lesson){
-  openLesson(lesson.dataset.lesson);
- }
-});
-
-document.getElementById("pageContent").addEventListener("keydown",e=>{
- const course=e.target.closest("[data-course]");
- if(course && (e.key==="Enter"||e.key===" ")){
-  e.preventDefault();
-  currentPage="lessons";
-  render();
- }
-});
-
-document.getElementById("menuBtn").addEventListener("click",()=>{
- document.getElementById("sidebar").classList.toggle("open");
-});
-
-/* ==================================
-   7. LANGUAGE SWITCHER
-================================== */
-
-document.getElementById("langBtn").addEventListener("click",()=>{
- state.language=isArabic()?"en":"ar";
+function updateMixer(key,value){
+ state.mixer[key]=Number(value);
  saveState();
- document.getElementById("langBtn").textContent=isArabic()?"English":"العربية";
- render();
-});
+ const knob=document.getElementById("knob-"+key);
+ if(knob)knob.textContent=value+(key==="aux"?"%":"dB");
+ const meter=document.getElementById("signalMeter");
+ const label=document.getElementById("meterLabel");
+ const explanation=document.getElementById("labExplanation");
+ if(meter)meter.style.width=meterValue()+"%";
+ if(label)label.textContent=meterValue()+"%";
+ if(explanation)explanation.textContent=labExplanation();
+}
+function resetMixer(){
+ state.mixer={...defaultState.mixer};
+ saveState();render();
+}
 
-/* ==================================
-   8. LESSON ENGINE
-================================== */
-
-const lessonData={
- L001:{
-  ar:"مقدمة في هندسة الصوت",
-  en:"Introduction to Sound Engineering",
-  bodyAr:"الصوت اضطراب ميكانيكي ينتقل عبر وسط مادي. تبدأ سلسلة النظام الصوتي من الميكروفون، ثم المكسر، ثم المعالجة، ثم مضخم القدرة، وأخيراً السماعة.",
-  bodyEn:"Sound is a mechanical disturbance that travels through a physical medium. A basic sound reinforcement chain begins with the microphone, mixer, signal processing, power amplifier and loudspeaker."
- },
- L002:{
-  ar:"التردد والسعة والطول الموجي",
-  en:"Frequency, Amplitude & Wavelength",
-  bodyAr:"التردد هو عدد الدورات في الثانية ويقاس بالهرتز. السعة ترتبط بحجم الموجة، والطول الموجي هو المسافة التي تقطعها الموجة خلال دورة كاملة.",
-  bodyEn:"Frequency is the number of cycles per second, measured in Hertz. Amplitude relates to wave magnitude, while wavelength is the distance traveled during one complete cycle."
- },
- L003:{
-  ar:"الديسيبل وضغط الصوت",
-  en:"Decibels & Sound Pressure",
-  bodyAr:"الديسيبل مقياس لوغاريتمي للنسب. ويستخدم dB SPL لقياس مستوى ضغط الصوت بالنسبة إلى مرجع 20 ميكروباسكال في الهواء.",
-  bodyEn:"The decibel is a logarithmic ratio. dB SPL measures sound pressure level relative to 20 micropascals in air."
- },
- L004:{
-  ar:"الإشارة الصوتية",
-  en:"Audio Signal Fundamentals",
-  bodyAr:"الإشارة الصوتية تنتقل في الأنظمة التناظرية على هيئة جهد كهربائي متغير، وفي الأنظمة الرقمية يتم تمثيلها بعينات رقمية.",
-  bodyEn:"An audio signal travels through analog systems as a varying electrical voltage. Digital systems represent audio using numerical samples."
- }
-};
-
-function openLesson(id){
- const lesson=lessonData[id];
- if(!lesson)return;
-
- const title=isArabic()?lesson.ar:lesson.en;
- const body=isArabic()?lesson.bodyAr:lesson.bodyEn;
- const done=state.completed.includes(id);
-
- document.getElementById("pageContent").innerHTML=`
- <button class="btn" id="backLessons">← ${t("lessons")}</button>
- <div class="section-head"><h1 class="page-title">${title}</h1></div>
- <div class="panel">
- <span class="tag">${id}</span>
- <h3>${title}</h3>
- <p style="line-height:2.2">${body}</p>
- <div class="section-head"><h3>Learning Objectives</h3></div>
- <p>${t("coming")}</p>
- <button class="btn primary" id="completeLesson" ${done?"disabled":""}>
- ${done?t("done"):t("markDone")}
- </button>
+/* =========================
+   9. EVENTS AND ENGINEERING
+========================= */
+function renderEvents(){
+ const items=[
+  ["🎤","مؤتمر","Conference","إعداد الميكروفونات، قائمة المداخل، توزيع السماعات، منع التغذية الراجعة، التسجيل والبث."],
+  ["🎶","حفل موسيقي","Concert","Stage Plot، Input List، مراقبة المسرح، Front of House، Monitor Mix، Sound Check."],
+  ["🏛️","قاعة متعددة الاستخدام","Multipurpose Hall","تقسيم المناطق، وضوح الكلام، أنظمة العرض، التحكم، والتشغيل اليومي."],
+  ["🕌","فعالية داخل مسجد","Mosque Event","توزيع مناطق الصوت، وضوح الخطبة، التحكم المستقل، والاختبار الميداني."]
+ ];
+ return `<div class="section-head"><h2>${t("تشغيل الفعاليات","Live Event Production")}</h2></div>
+ <div class="grid">${items.map(x=>`
+ <article class="card"><div class="icon">${x[0]}</div>
+ <h3>${state.language==="ar"?x[1]:x[2]}</h3>
+ <p>${state.language==="ar"?x[3]:({
+ "Conference":"Microphone setup, input list, loudspeaker distribution, feedback control, recording and streaming.",
+ "Concert":"Stage plot, input list, stage monitoring, front of house, monitor mix and soundcheck.",
+ "Multipurpose Hall":"Zone planning, speech intelligibility, AV integration, control and daily operation.",
+ "Mosque Event":"Audio zones, sermon intelligibility, independent control and field testing."
+ }[x[2]])}</p></article>`).join("")}</div>
+ <div class="callout">${t("كل نوع من الفعاليات سيحصل لاحقاً على مسار عملي يتضمن قائمة المعدات ومخطط التوصيل وخطة الاختبار وسيناريو الأعطال.","Each event type will receive a practical workflow with equipment lists, connection diagrams, test plans and fault scenarios.")}</div>`;
+}
+function renderEngineering(){
+ return `<div class="section-head"><h2>${t("هندسة الأنظمة الصوتية","Audio System Engineering")}</h2></div>
+ <div class="grid">
+ ${[
+ ["📏","تحليل الموقع","Site Survey","الأبعاد والارتفاع والمواد والضوضاء ومناطق الجمهور."],
+ ["🔊","اختيار السماعات","Loudspeaker Selection","النوع والتغطية والحساسية والقدرة والممانعة."],
+ ["⚡","التوصيلات والطاقة","Wiring & Power","الكابلات والموصلات والتأريض والسلامة الكهربائية."],
+ ["📐","التغطية الصوتية","Coverage Design","الزاوية والمسافة والتداخل والانتظام."],
+ ["🎚️","المعالجة والضبط","System Tuning","EQ وDelay وPolarity وLimiters والقياس."],
+ ["📋","التوثيق والتسليم","Documentation","المخططات وBOQ وبيانات الأجهزة وتقارير الاختبار."]
+ ].map(x=>`<article class="card"><div class="icon">${x[0]}</div><h3>${state.language==="ar"?x[1]:x[2]}</h3><p>${state.language==="ar"?x[3]:({
+ "Site Survey":"Dimensions, height, materials, ambient noise and audience zones.",
+ "Loudspeaker Selection":"Type, coverage, sensitivity, power and impedance.",
+ "Wiring & Power":"Cables, connectors, grounding and electrical safety.",
+ "Coverage Design":"Angles, distance, interaction and uniformity.",
+ "System Tuning":"EQ, delay, polarity, limiters and measurement.",
+ "Documentation":"Drawings, BOQ, equipment data and test reports."
+ }[x[2]])}</p></article>`).join("")}
  </div>`;
-
- document.getElementById("backLessons").onclick=()=>{
-  currentPage="lessons";render();
- };
- document.getElementById("completeLesson").onclick=()=>{
-  if(!state.completed.includes(id))state.completed.push(id);
-  saveState();
-  render();
- };
 }
 
-/* ==================================
-   9. DYNAMIC ACTIONS
-================================== */
-
-function bindDynamicActions(){
- const save=document.getElementById("saveProfile");
- if(save)save.onclick=()=>{
-  state.studentName=document.getElementById("studentName").value.trim();
-  saveState();
-  alert(isArabic()?"تم حفظ الملف محلياً":"Profile saved locally");
- };
+/* =========================
+   10. STUDENT PROGRESS
+========================= */
+function renderProgress(){
+ const rows=lessons.map(l=>{
+  const score=state.scores[l.id];
+  return `<div class="lesson-row">
+   <div><strong>${esc(state.language==="ar"?l.ar:l.en)}</strong><small>${l.id}</small></div>
+   <div class="toolbar">
+    <span class="tag">${state.completed.includes(l.id)?t("مكتمل","Completed"):t("غير مكتمل","Incomplete")}</span>
+    <span class="muted">${score===undefined?"—":score+"%"}</span>
+   </div>
+  </div>`;
+ }).join("");
+ return `<div class="section-head"><h2>${t("إنجازاتي التعليمية","My Learning Progress")}</h2></div>
+ <div class="card">
+  <div class="toolbar" style="justify-content:space-between"><strong>${t("التقدم الإجمالي","Overall Progress")}</strong><strong>${completionRate()}%</strong></div>
+  <div class="progress-track" style="margin-top:12px"><div class="progress-fill" style="width:${completionRate()}%"></div></div>
+  <p class="muted">${state.completed.length} / ${lessons.length} ${t("دروس مكتملة","lessons completed")}</p>
+ </div>
+ <div class="section-head"><h3>${t("سجل الدروس","Lesson Record")}</h3></div>
+ <div class="list">${rows}</div>
+ <div class="callout">${t("يتم حفظ هذه النتائج محلياً على هذا المتصفح. لا توجد حالياً حسابات مستخدمين أو مزامنة سحابية أو شهادات معتمدة.","These results are saved locally in this browser. Student accounts, cloud synchronization and accredited certificates are not currently implemented.")}</div>`;
 }
 
-document.getElementById("resetBtn").addEventListener("click",()=>{
- if(confirm(isArabic()?"هل تريد مسح تقدمك المحلي؟":"Reset local learning progress?")){
-  state.completed=[];
-  saveState();
-  render();
- }
-});
-
-/* ==================================
-   10. APPLICATION INITIALIZATION
-================================== */
-
-document.getElementById("langBtn").textContent=
- state.language==="ar"?"English":"العربية";
-
+/* =========================
+   11. START
+========================= */
+applyLanguage();
 render();
-
-console.info(
- APP.name+" v"+APP.version+" initialized successfully."
-);
 </script>
 </body>
 </html>
