@@ -1,0 +1,792 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#090e19">
+<meta name="description" content="PRO AUDIO MASTER ACADEMY - Complete Audio Engineering Education">
+<title>PRO AUDIO MASTER ACADEMY</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --bg:#090e19;
+  --panel:#111a2b;
+  --panel2:#172338;
+  --border:#26364f;
+  --text:#edf3fc;
+  --muted:#91a2bb;
+  --red:#e60024;
+  --blue:#38bdf8;
+  --gold:#e5c07b;
+  --green:#22c55e;
+  --purple:#a855f7;
+  --radius:16px;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;background:var(--bg);color:var(--text);
+  font-family:'Cairo','Inter',sans-serif;
+  min-height:100vh;
+}
+button{font:inherit;cursor:pointer}
+a{color:inherit;text-decoration:none}
+.app{display:flex;min-height:100vh}
+.sidebar{
+  width:265px;flex-shrink:0;background:#0d1524;
+  border-left:1px solid var(--border);
+  padding:22px 15px;display:flex;flex-direction:column;
+  position:sticky;top:0;height:100vh;overflow:auto;
+}
+.brand{padding:8px 12px 25px;border-bottom:1px solid var(--border)}
+.brand-icon{
+  width:44px;height:44px;border-radius:13px;
+  background:linear-gradient(135deg,var(--red),#8e001b);
+  display:grid;place-items:center;font-size:23px;margin-bottom:12px;
+}
+.brand h1{font-size:16px;line-height:1.5;margin:0;font-weight:800}
+.brand p{font:11px Inter;color:var(--muted);margin:5px 0}
+.nav-title{font-size:11px;color:var(--muted);padding:20px 12px 8px}
+.nav-btn{
+  border:0;background:transparent;color:#b7c5d9;
+  padding:11px 13px;border-radius:10px;text-align:right;
+  width:100%;display:flex;align-items:center;gap:11px;
+  margin:3px 0;transition:.2s;
+}
+.nav-btn:hover,.nav-btn.active{
+  background:var(--panel2);color:white;
+}
+.nav-btn.active{border-right:3px solid var(--red)}
+.nav-icon{font-size:18px;width:24px;text-align:center}
+.sidebar-footer{margin-top:auto;padding:14px 8px;color:var(--muted);font-size:11px}
+.main{flex:1;min-width:0}
+.topbar{
+  min-height:75px;border-bottom:1px solid var(--border);
+  display:flex;justify-content:space-between;align-items:center;
+  padding:14px 28px;gap:15px;flex-wrap:wrap;
+  background:#0b1321;
+}
+.topbar h2{font-size:17px;margin:0}
+.top-actions{display:flex;align-items:center;gap:9px}
+.btn{
+  border:1px solid var(--border);background:var(--panel2);
+  color:white;border-radius:10px;padding:9px 14px;
+}
+.btn.primary{background:var(--red);border-color:var(--red)}
+.btn:hover{filter:brightness(1.15)}
+.content{padding:28px;max-width:1500px;margin:auto}
+.hero{
+  padding:30px;border:1px solid var(--border);border-radius:22px;
+  background:linear-gradient(115deg,#182840,#111a2b 60%,#291421);
+  position:relative;overflow:hidden;
+}
+.hero:after{
+  content:"♫";position:absolute;left:35px;top:5px;
+  font-size:170px;color:#ffffff09;
+}
+.hero h1{font-size:clamp(25px,4vw,38px);margin:0 0 8px}
+.hero p{color:#bdc9db;max-width:650px;line-height:1.9}
+.hero .btn{margin-top:12px}
+.section-head{
+  display:flex;justify-content:space-between;align-items:center;
+  gap:12px;margin:30px 0 15px;flex-wrap:wrap;
+}
+.section-head h3{font-size:19px;margin:0}
+.muted{color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:15px}
+.card{
+  background:var(--panel);border:1px solid var(--border);
+  border-radius:var(--radius);padding:19px;min-width:0;
+}
+.stat{display:flex;justify-content:space-between;align-items:center}
+.stat strong{font:800 27px Inter;color:white}
+.stat-icon{font-size:26px}
+.card h4{margin:8px 0;font-size:15px}
+.card p{color:var(--muted);font-size:12px;line-height:1.8}
+.progress{height:7px;background:#26364c;border-radius:20px;overflow:hidden;margin:12px 0}
+.progress span{display:block;height:100%;background:var(--blue);border-radius:20px}
+.course-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}
+.course-card{
+  background:var(--panel);border:1px solid var(--border);
+  border-radius:15px;padding:18px;transition:.2s;
+}
+.course-card:hover{border-color:var(--blue);transform:translateY(-2px)}
+.course-icon{font-size:29px;margin-bottom:12px}
+.course-card h4{margin:0 0 7px}
+.course-card p{font-size:12px;color:var(--muted);line-height:1.8}
+.tag{
+  display:inline-block;font-size:10px;padding:4px 9px;
+  border-radius:20px;background:#203149;color:var(--blue);
+  margin:3px 2px;
+}
+.panel{background:var(--panel);border:1px solid var(--border);border-radius:16px;padding:20px}
+.lesson-list{display:grid;gap:9px}
+.lesson-item{
+  display:flex;align-items:center;justify-content:space-between;
+  gap:10px;padding:13px;border:1px solid var(--border);
+  border-radius:10px;background:#111b2a;
+}
+.lesson-item button{white-space:nowrap}
+.empty{padding:35px;text-align:center;color:var(--muted)}
+.page-title{font-size:26px;margin:0 0 7px}
+.hidden{display:none!important}
+footer{text-align:center;padding:30px;color:var(--muted);font-size:11px}
+input,select{
+  background:#0c1524;color:white;border:1px solid var(--border);
+  border-radius:9px;padding:10px;font:inherit;
+}
+[dir="ltr"] .nav-btn{text-align:left}
+[dir="ltr"] .nav-btn.active{border-right:0;border-left:3px solid var(--red)}
+.mobile-menu{display:none}
+@media(max-width:1050px){
+ .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .course-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:700px){
+ .sidebar{
+  position:fixed;z-index:10;right:0;top:0;
+  transform:translateX(105%);transition:.25s;
+  box-shadow:0 0 30px #0009;
+ }
+ [dir="ltr"] .sidebar{right:auto;left:0;transform:translateX(-105%)}
+ .sidebar.open{transform:translateX(0)!important}
+ .mobile-menu{display:inline-block}
+ .content{padding:16px}
+ .topbar{padding:12px 15px}
+ .grid,.course-grid{grid-template-columns:1fr 1fr;gap:9px}
+ .card,.course-card{padding:13px}
+ .hero{padding:20px}
+ .hero:after{font-size:100px}
+ .stat strong{font-size:22px}
+}
+@media(max-width:390px){
+ .grid,.course-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+
+<body>
+<div class="app">
+
+<aside class="sidebar" id="sidebar">
+  <div class="brand">
+    <div class="brand-icon">🎚️</div>
+    <h1>PRO AUDIO<br>MASTER ACADEMY</h1>
+    <p>PROFESSIONAL AUDIO EDUCATION</p>
+  </div>
+
+  <div class="nav-title" data-i18n="mainMenu">القائمة الرئيسية</div>
+
+  <button class="nav-btn active" data-page="dashboard">
+    <span class="nav-icon">⌂</span><span data-i18n="dashboard">لوحة التحكم</span>
+  </button>
+  <button class="nav-btn" data-page="curriculum">
+    <span class="nav-icon">🎓</span><span data-i18n="curriculum">الكليات التعليمية</span>
+  </button>
+  <button class="nav-btn" data-page="levels">
+    <span class="nav-icon">📚</span><span data-i18n="levels">المستويات الدراسية</span>
+  </button>
+  <button class="nav-btn" data-page="lessons">
+    <span class="nav-icon">📖</span><span data-i18n="lessons">الدروس</span>
+  </button>
+  <button class="nav-btn" data-page="lab">
+    <span class="nav-icon">🎛️</span><span data-i18n="lab">مختبر المحاكاة</span>
+  </button>
+
+  <div class="nav-title" data-i18n="training">التدريب والتقييم</div>
+  <button class="nav-btn" data-page="events">
+    <span class="nav-icon">🎤</span><span data-i18n="events">تشغيل الفعاليات</span>
+  </button>
+  <button class="nav-btn" data-page="engineering">
+    <span class="nav-icon">🔊</span><span data-i18n="engineering">هندسة الأنظمة</span>
+  </button>
+  <button class="nav-btn" data-page="exams">
+    <span class="nav-icon">📝</span><span data-i18n="exams">الاختبارات</span>
+  </button>
+  <button class="nav-btn" data-page="projects">
+    <span class="nav-icon">🏗️</span><span data-i18n="projects">المشاريع العملية</span>
+  </button>
+
+  <div class="nav-title" data-i18n="resources">المصادر</div>
+  <button class="nav-btn" data-page="library">
+    <span class="nav-icon">📂</span><span data-i18n="library">مكتبة الأجهزة</span>
+  </button>
+  <button class="nav-btn" data-page="profile">
+    <span class="nav-icon">👤</span><span data-i18n="profile">ملفي التعليمي</span>
+  </button>
+
+  <div class="sidebar-footer">
+    VERSION 1.0.0<br>
+    © PRO AUDIO MASTER ACADEMY
+  </div>
+</aside>
+
+<main class="main">
+<header class="topbar">
+  <div style="display:flex;align-items:center;gap:12px">
+    <button class="btn mobile-menu" id="menuBtn">☰</button>
+    <div>
+      <h2 data-i18n="welcome">مرحباً بك في الأكاديمية</h2>
+      <small class="muted" data-i18n="subtitle">رحلتك نحو الاحتراف تبدأ هنا</small>
+    </div>
+  </div>
+  <div class="top-actions">
+    <button class="btn" id="langBtn">English</button>
+    <button class="btn" id="resetBtn" title="Reset local progress">↻</button>
+  </div>
+</header>
+
+<div class="content">
+<div id="pageContent"></div>
+</div>
+
+<footer>
+PRO AUDIO MASTER ACADEMY · EDUCATION · ENGINEERING · PROFESSIONALISM
+</footer>
+</main>
+</div>
+
+<script>
+"use strict";
+
+/* ==================================
+   1. APPLICATION CONFIGURATION
+================================== */
+
+const APP = {
+  name: "PRO AUDIO MASTER ACADEMY",
+  version: "1.0.0",
+  storageKey: "proAudioAcademy_v1",
+  defaultLanguage: "ar"
+};
+
+/* ==================================
+   2. TRANSLATION ENGINE
+================================== */
+
+const translations = {
+ ar:{
+  mainMenu:"القائمة الرئيسية",dashboard:"لوحة التحكم",
+  curriculum:"الكليات التعليمية",levels:"المستويات الدراسية",
+  lessons:"الدروس",lab:"مختبر المحاكاة",
+  training:"التدريب والتقييم",events:"تشغيل الفعاليات",
+  engineering:"هندسة الأنظمة",exams:"الاختبارات",
+  projects:"المشاريع العملية",resources:"المصادر",
+  library:"مكتبة الأجهزة",profile:"ملفي التعليمي",
+  welcome:"مرحباً بك في الأكاديمية",
+  subtitle:"رحلتك نحو الاحتراف تبدأ هنا",
+  heroTitle:"تعلم هندسة الصوت من الصفر إلى الاحتراف",
+  heroText:"من أساسيات الصوت إلى المكسرات الرقمية وتصميم الأنظمة وتشغيل أكبر الفعاليات. أكاديمية متكاملة تجمع المعرفة العلمية والتطبيق العملي.",
+  start:"ابدأ التعلم الآن",
+  colleges:"الكليات التعليمية",
+  progress:"تقدمك التعليمي",
+  completed:"الدروس المكتملة",
+  totalLessons:"إجمالي الدروس",
+  score:"متوسط الاختبارات",
+  stages:"المستويات الأكاديمية",
+  continue:"تابع رحلتك التعليمية",
+  open:"استكشاف",
+  coming:"سيتم إضافة المحتوى التفصيلي في الوحدة التعليمية.",
+  noLessons:"لا توجد دروس منشورة في هذا القسم بعد.",
+  levelsTitle:"المستويات الأكاديمية العشرة",
+  labTitle:"مختبر هندسة الصوت",
+  labText:"سيتم ربط المحاكيات التفاعلية هنا.",
+  libraryTitle:"مكتبة المعدات الصوتية",
+  eventsTitle:"تشغيل وإدارة الفعاليات",
+  engineeringTitle:"هندسة الأنظمة الصوتية",
+  examsTitle:"الاختبارات والتقييم",
+  projectsTitle:"المشاريع العملية",
+  profileTitle:"ملفي التعليمي",
+  startLesson:"فتح الدرس",
+  markDone:"تسجيل الدرس كمكتمل",
+  done:"مكتمل",
+  notDone:"لم يكتمل",
+  language:"اللغة"
+ },
+ en:{
+  mainMenu:"MAIN MENU",dashboard:"Dashboard",
+  curriculum:"Academic Colleges",levels:"Study Levels",
+  lessons:"Lessons",lab:"Simulation Lab",
+  training:"TRAINING & ASSESSMENT",events:"Event Production",
+  engineering:"System Engineering",exams:"Examinations",
+  projects:"Practical Projects",resources:"RESOURCES",
+  library:"Equipment Library",profile:"My Learning Profile",
+  welcome:"Welcome to the Academy",
+  subtitle:"Your journey to professional excellence starts here",
+  heroTitle:"Learn Audio Engineering from Zero to Mastery",
+  heroText:"From sound fundamentals to digital consoles, system design and major live events. An integrated academy combining scientific knowledge with practical training.",
+  start:"Start Learning",
+  colleges:"Academic Colleges",
+  progress:"Your Learning Progress",
+  completed:"Completed Lessons",
+  totalLessons:"Total Lessons",
+  score:"Exam Average",
+  stages:"Academic Levels",
+  continue:"Continue Your Learning Journey",
+  open:"Explore",
+  coming:"Detailed educational content will be added in this module.",
+  noLessons:"No published lessons in this section yet.",
+  levelsTitle:"The Ten Academic Levels",
+  labTitle:"Audio Engineering Simulation Lab",
+  labText:"Interactive simulators will be integrated here.",
+  libraryTitle:"Audio Equipment Library",
+  eventsTitle:"Live Events & Production",
+  engineeringTitle:"Professional Audio System Engineering",
+  examsTitle:"Examinations & Assessment",
+  projectsTitle:"Practical Projects",
+  profileTitle:"My Learning Profile",
+  startLesson:"Open Lesson",
+  markDone:"Mark Lesson Complete",
+  done:"Completed",
+  notDone:"Not completed",
+  language:"Language"
+ }
+};
+
+/* ==================================
+   3. CURRICULUM DATABASE
+================================== */
+
+const colleges = [
+ {id:"foundation",icon:"🌊",name:"أساسيات الصوت والفيزياء",en:"Sound Fundamentals & Physics",desc:"التردد والموجات والضغط الصوتي والديسيبل."},
+ {id:"microphones",icon:"🎙️",name:"الميكروفونات والتوصيلات",en:"Microphones & Connections",desc:"أنواع الميكروفونات والكابلات والإشارات."},
+ {id:"analog",icon:"🎚️",name:"المكسرات التناظرية",en:"Analog Mixing Consoles",desc:"فهم المكسرات وقنوات الإدخال والإخراج."},
+ {id:"dynacord",icon:"🔴",name:"Dynacord CMS & PM",en:"Dynacord CMS & PowerMate",desc:"شرح عملي تفصيلي لمكسرات Dynacord."},
+ {id:"processing",icon:"🎛️",name:"معالجة الصوت والمؤثرات",en:"Audio Processing & Effects",desc:"EQ وCompressor وGate وReverb وDelay."},
+ {id:"digital",icon:"💻",name:"المكسرات الرقمية",en:"Digital Mixing Consoles",desc:"X32 وM32 وYamaha وAllen & Heath وغيرها."},
+ {id:"speakers",icon:"🔊",name:"السماعات والمضخمات",en:"Speakers & Amplifiers",desc:"Passive وActive وSubwoofers وDSP."},
+ {id:"systems",icon:"📐",name:"هندسة الأنظمة الصوتية",en:"Sound System Engineering",desc:"توزيع السماعات والتغطية والقياس."},
+ {id:"acoustics",icon:"🏛️",name:"الصوتيات المعمارية",en:"Architectural Acoustics",desc:"الصدى والارتداد والمعالجة الصوتية."},
+ {id:"live",icon:"🎤",name:"الفعاليات والإنتاج الحي",en:"Live Sound & Event Production",desc:"الحفلات والمسرح والتجهيز والتشغيل."},
+ {id:"venues",icon:"🕌",name:"المساجد والقاعات",en:"Mosques & Auditoriums",desc:"أنظمة الخطابة والمؤتمرات ودور العبادة."},
+ {id:"network",icon:"🌐",name:"الشبكات الصوتية وأنظمة AV",en:"Audio Networking & AV",desc:"Dante وAoIP والتكامل السمعي البصري."}
+];
+
+const levels = [
+ ["Foundation","التأسيس العلمي"],
+ ["Audio Operator","مشغل صوت"],
+ ["Professional Mixer","مهندس مزج صوت"],
+ ["Digital Engineer","مهندس صوت رقمي"],
+ ["System Technician","فني أنظمة صوتية"],
+ ["Acoustic Engineer","مهندس صوتيات"],
+ ["Live Sound Engineer","مهندس فعاليات"],
+ ["Specialist Engineer","مهندس متخصص"],
+ ["System Designer","مصمم أنظمة صوتية"],
+ ["Master Engineer","مهندس صوت خبير"]
+];
+
+/* ==================================
+   4. APPLICATION STATE
+================================== */
+
+function loadState(){
+ try{
+  return JSON.parse(localStorage.getItem(APP.storageKey)) || {};
+ }catch(e){return {};}
+}
+
+let state = {
+ language:APP.defaultLanguage,
+ completed:[],
+ studentName:"",
+ ...loadState()
+};
+
+function saveState(){
+ localStorage.setItem(APP.storageKey,JSON.stringify(state));
+}
+
+const t = key => translations[state.language][key] || key;
+const isArabic = () => state.language==="ar";
+
+function courseName(c){
+ return isArabic()?c.name:c.en;
+}
+
+function escapeHTML(value){
+ return String(value).replace(/[&<>"']/g,c=>({
+  "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+ }[c]));
+}
+
+/* ==================================
+   5. PAGE RENDERING ENGINE
+================================== */
+
+let currentPage="dashboard";
+
+function render(){
+ const root=document.getElementById("pageContent");
+ document.documentElement.lang=state.language;
+ document.documentElement.dir=isArabic()?"rtl":"ltr";
+
+ document.querySelectorAll("[data-i18n]").forEach(el=>{
+  el.textContent=t(el.dataset.i18n);
+ });
+
+ document.querySelectorAll(".nav-btn").forEach(btn=>{
+  btn.classList.toggle("active",btn.dataset.page===currentPage);
+ });
+
+ const pages={
+  dashboard:renderDashboard,
+  curriculum:renderCurriculum,
+  levels:renderLevels,
+  lessons:renderLessons,
+  lab:renderLab,
+  events:renderEvents,
+  engineering:renderEngineering,
+  exams:renderExams,
+  projects:renderProjects,
+  library:renderLibrary,
+  profile:renderProfile
+ };
+
+ root.innerHTML=(pages[currentPage]||renderDashboard)();
+ bindDynamicActions();
+}
+
+function renderDashboard(){
+ const progress=state.completed.length;
+ const percent=Math.min(100,Math.round(progress/Math.max(1,12)*100));
+
+ return `
+ <section class="hero">
+  <span class="tag">PROFESSIONAL EDUCATION</span>
+  <h1>${t("heroTitle")}</h1>
+  <p>${t("heroText")}</p>
+  <button class="btn primary" data-go="curriculum">${t("start")} →</button>
+ </section>
+
+ <div class="section-head"><h3>${t("progress")}</h3></div>
+
+ <div class="grid">
+  <div class="card">
+   <div class="stat"><span class="muted">${t("completed")}</span><span class="stat-icon">✅</span></div>
+   <strong>${progress}</strong><p>${t("lessons")}</p>
+  </div>
+  <div class="card">
+   <div class="stat"><span class="muted">${t("totalLessons")}</span><span class="stat-icon">📚</span></div>
+   <strong>12+</strong><p>${t("colleges")}</p>
+  </div>
+  <div class="card">
+   <div class="stat"><span class="muted">${t("score")}</span><span class="stat-icon">🏆</span></div>
+   <strong>—</strong><p>Exam system pending</p>
+  </div>
+  <div class="card">
+   <div class="stat"><span class="muted">${t("stages")}</span><span class="stat-icon">🎓</span></div>
+   <strong>10</strong><p>Academic Levels</p>
+  </div>
+ </div>
+
+ <div class="section-head"><h3>${t("colleges")}</h3>
+ <button class="btn" data-go="curriculum">${t("open")}</button></div>
+ <div class="course-grid">
+ ${colleges.slice(0,6).map(c=>courseCard(c)).join("")}
+ </div>
+
+ <div class="section-head"><h3>${t("continue")}</h3></div>
+ <div class="panel">
+  <div class="progress"><span style="width:${percent}%"></span></div>
+  <p class="muted">${percent}%</p>
+  <button class="btn primary" data-go="lessons">${t("start")}</button>
+ </div>`;
+}
+
+function courseCard(c){
+ return `<div class="course-card" data-course="${c.id}" role="button" tabindex="0">
+  <div class="course-icon">${c.icon}</div>
+  <h4>${courseName(c)}</h4>
+  <p>${isArabic()?c.desc:c.en}</p>
+  <span class="tag">${t("open")} ←</span>
+ </div>`;
+}
+
+function renderCurriculum(){
+ return `<h1 class="page-title">${t("colleges")}</h1>
+ <p class="muted">${t("heroText")}</p>
+ <div class="course-grid">${colleges.map(courseCard).join("")}</div>`;
+}
+
+function renderLevels(){
+ return `<h1 class="page-title">${t("levelsTitle")}</h1>
+ <div class="panel">
+ ${levels.map((l,i)=>`
+ <div class="lesson-item">
+  <div><span class="tag">LEVEL ${String(i+1).padStart(2,"0")}</span>
+  <strong>${isArabic()?l[1]:l[0]}</strong>
+  <p class="muted">${l[0]}</p></div>
+  <span>🔒</span>
+ </div>`).join("")}
+ </div>`;
+}
+
+function renderLessons(){
+ return `<h1 class="page-title">${t("lessons")}</h1>
+ <p class="muted">${t("noLessons")}</p>
+ <div class="panel">
+  <h3>LEVEL 01 — ${isArabic()?"التأسيس":"Foundation"}</h3>
+  <div id="lessonList" class="lesson-list">
+   ${[
+    ["L001","مقدمة في هندسة الصوت","Introduction to Sound Engineering"],
+    ["L002","التردد والسعة والطول الموجي","Frequency, Amplitude & Wavelength"],
+    ["L003","الديسيبل وضغط الصوت","Decibels & Sound Pressure"],
+    ["L004","الإشارة الصوتية","Audio Signal Fundamentals"]
+   ].map((l,i)=>`
+    <div class="lesson-item">
+     <div><span class="tag">${l[0]}</span>
+     <strong>${isArabic()?l[1]:l[2]}</strong></div>
+     <button class="btn" data-lesson="${l[0]}">${t("startLesson")}</button>
+    </div>`).join("")}
+  </div>
+ </div>`;
+}
+
+function renderLab(){
+ return `<h1 class="page-title">${t("labTitle")}</h1>
+ <p class="muted">${t("labText")}</p>
+ <div class="course-grid">
+ ${[
+ ["🎚️","Analog Mixer Simulator","محاكاة المكسر التناظري"],
+ ["💻","Digital Mixer Simulator","محاكاة المكسر الرقمي"],
+ ["📊","EQ & Frequency Lab","مختبر الترددات والمعادلة"],
+ ["🔊","Speaker Coverage Lab","مختبر تغطية السماعات"],
+ ["🎤","Feedback Trainer","التدريب على اكتشاف Feedback"],
+ ["📡","Signal Flow Lab","مختبر مسارات الإشارة"]
+ ].map(x=>`<div class="course-card">
+ <div class="course-icon">${x[0]}</div>
+ <h4>${isArabic()?x[2]:x[1]}</h4>
+ <p>${t("coming")}</p>
+ <span class="tag">PLANNED MODULE</span>
+ </div>`).join("")}
+ </div>`;
+}
+
+function genericPage(title,description,items){
+ return `<h1 class="page-title">${title}</h1>
+ <p class="muted">${description}</p>
+ <div class="course-grid">
+ ${items.map(x=>`<div class="course-card">
+ <div class="course-icon">${x[0]}</div>
+ <h4>${isArabic()?x[1]:x[2]}</h4>
+ <p>${t("coming")}</p></div>`).join("")}
+ </div>`;
+}
+
+function renderEvents(){
+ return genericPage(t("eventsTitle"),t("heroText"),[
+ ["🎵","الحفلات الموسيقية","Concert Production"],
+ ["💍","الأعراس والمناسبات","Weddings & Events"],
+ ["🏢","المؤتمرات والمعارض","Conferences & Exhibitions"],
+ ["🎭","المسرح والعروض","Theatre & Shows"],
+ ["🏟️","الملاعب والفعاليات الكبرى","Stadium & Major Events"]
+ ]);
+}
+
+function renderEngineering(){
+ return genericPage(t("engineeringTitle"),t("heroText"),[
+ ["🔊","أنظمة السماعات","Loudspeaker Systems"],
+ ["📐","حسابات SPL والتغطية","SPL & Coverage"],
+ ["🎚️","DSP والمعالجات","DSP & Processing"],
+ ["📏","القياس والضبط","Measurement & Tuning"],
+ ["🌐","الشبكات الصوتية","Audio Networking"]
+ ]);
+}
+
+function renderExams(){
+ return `<h1 class="page-title">${t("examsTitle")}</h1>
+ <div class="panel">
+ <h3>Assessment Center</h3>
+ <p class="muted">${t("coming")}</p>
+ </div>`;
+}
+
+function renderProjects(){
+ return genericPage(t("projectsTitle"),t("heroText"),[
+ ["🕌","تصميم نظام صوت مسجد","Mosque Audio Design"],
+ ["🏛️","تصميم قاعة مؤتمرات","Conference Hall Design"],
+ ["🎤","تنفيذ فعالية مباشرة","Live Event Production"],
+ ["🏟️","تصميم نظام ملعب","Stadium Sound System"]
+ ]);
+}
+
+function renderLibrary(){
+ return `<h1 class="page-title">${t("libraryTitle")}</h1>
+ <p class="muted">${t("coming")}</p>
+ <div class="course-grid">
+ ${["Dynacord CMS","Dynacord PowerMate","Behringer X32","Midas M32","Yamaha Digital","Allen & Heath","DiGiCo","Shure Microphones"].map(x=>`
+ <div class="course-card"><div class="course-icon">🎛️</div>
+ <h4>${x}</h4><p>Manuals, specifications and training.</p>
+ </div>`).join("")}
+ </div>`;
+}
+
+function renderProfile(){
+ return `<h1 class="page-title">${t("profileTitle")}</h1>
+ <div class="panel">
+ <label>${isArabic()?"اسم الطالب":"Student Name"}</label><br><br>
+ <input id="studentName" value="${escapeHTML(state.studentName)}" placeholder="${isArabic()?"اكتب اسمك":"Enter your name"}">
+ <button class="btn primary" id="saveProfile">${isArabic()?"حفظ":"Save"}</button>
+ <div class="section-head"><h3>${t("progress")}</h3></div>
+ <p>${state.completed.length} ${t("completed")}</p>
+ </div>`;
+}
+
+/* ==================================
+   6. NAVIGATION
+================================== */
+
+document.querySelectorAll(".nav-btn").forEach(btn=>{
+ btn.addEventListener("click",()=>{
+  currentPage=btn.dataset.page;
+  document.getElementById("sidebar").classList.remove("open");
+  render();
+ });
+});
+
+document.getElementById("pageContent").addEventListener("click",e=>{
+ const go=e.target.closest("[data-go]");
+ if(go){
+  currentPage=go.dataset.go;
+  render();
+  return;
+ }
+
+ const course=e.target.closest("[data-course]");
+ if(course){
+  currentPage="lessons";
+  render();
+  return;
+ }
+
+ const lesson=e.target.closest("[data-lesson]");
+ if(lesson){
+  openLesson(lesson.dataset.lesson);
+ }
+});
+
+document.getElementById("pageContent").addEventListener("keydown",e=>{
+ const course=e.target.closest("[data-course]");
+ if(course && (e.key==="Enter"||e.key===" ")){
+  e.preventDefault();
+  currentPage="lessons";
+  render();
+ }
+});
+
+document.getElementById("menuBtn").addEventListener("click",()=>{
+ document.getElementById("sidebar").classList.toggle("open");
+});
+
+/* ==================================
+   7. LANGUAGE SWITCHER
+================================== */
+
+document.getElementById("langBtn").addEventListener("click",()=>{
+ state.language=isArabic()?"en":"ar";
+ saveState();
+ document.getElementById("langBtn").textContent=isArabic()?"English":"العربية";
+ render();
+});
+
+/* ==================================
+   8. LESSON ENGINE
+================================== */
+
+const lessonData={
+ L001:{
+  ar:"مقدمة في هندسة الصوت",
+  en:"Introduction to Sound Engineering",
+  bodyAr:"الصوت اضطراب ميكانيكي ينتقل عبر وسط مادي. تبدأ سلسلة النظام الصوتي من الميكروفون، ثم المكسر، ثم المعالجة، ثم مضخم القدرة، وأخيراً السماعة.",
+  bodyEn:"Sound is a mechanical disturbance that travels through a physical medium. A basic sound reinforcement chain begins with the microphone, mixer, signal processing, power amplifier and loudspeaker."
+ },
+ L002:{
+  ar:"التردد والسعة والطول الموجي",
+  en:"Frequency, Amplitude & Wavelength",
+  bodyAr:"التردد هو عدد الدورات في الثانية ويقاس بالهرتز. السعة ترتبط بحجم الموجة، والطول الموجي هو المسافة التي تقطعها الموجة خلال دورة كاملة.",
+  bodyEn:"Frequency is the number of cycles per second, measured in Hertz. Amplitude relates to wave magnitude, while wavelength is the distance traveled during one complete cycle."
+ },
+ L003:{
+  ar:"الديسيبل وضغط الصوت",
+  en:"Decibels & Sound Pressure",
+  bodyAr:"الديسيبل مقياس لوغاريتمي للنسب. ويستخدم dB SPL لقياس مستوى ضغط الصوت بالنسبة إلى مرجع 20 ميكروباسكال في الهواء.",
+  bodyEn:"The decibel is a logarithmic ratio. dB SPL measures sound pressure level relative to 20 micropascals in air."
+ },
+ L004:{
+  ar:"الإشارة الصوتية",
+  en:"Audio Signal Fundamentals",
+  bodyAr:"الإشارة الصوتية تنتقل في الأنظمة التناظرية على هيئة جهد كهربائي متغير، وفي الأنظمة الرقمية يتم تمثيلها بعينات رقمية.",
+  bodyEn:"An audio signal travels through analog systems as a varying electrical voltage. Digital systems represent audio using numerical samples."
+ }
+};
+
+function openLesson(id){
+ const lesson=lessonData[id];
+ if(!lesson)return;
+
+ const title=isArabic()?lesson.ar:lesson.en;
+ const body=isArabic()?lesson.bodyAr:lesson.bodyEn;
+ const done=state.completed.includes(id);
+
+ document.getElementById("pageContent").innerHTML=`
+ <button class="btn" id="backLessons">← ${t("lessons")}</button>
+ <div class="section-head"><h1 class="page-title">${title}</h1></div>
+ <div class="panel">
+ <span class="tag">${id}</span>
+ <h3>${title}</h3>
+ <p style="line-height:2.2">${body}</p>
+ <div class="section-head"><h3>Learning Objectives</h3></div>
+ <p>${t("coming")}</p>
+ <button class="btn primary" id="completeLesson" ${done?"disabled":""}>
+ ${done?t("done"):t("markDone")}
+ </button>
+ </div>`;
+
+ document.getElementById("backLessons").onclick=()=>{
+  currentPage="lessons";render();
+ };
+ document.getElementById("completeLesson").onclick=()=>{
+  if(!state.completed.includes(id))state.completed.push(id);
+  saveState();
+  render();
+ };
+}
+
+/* ==================================
+   9. DYNAMIC ACTIONS
+================================== */
+
+function bindDynamicActions(){
+ const save=document.getElementById("saveProfile");
+ if(save)save.onclick=()=>{
+  state.studentName=document.getElementById("studentName").value.trim();
+  saveState();
+  alert(isArabic()?"تم حفظ الملف محلياً":"Profile saved locally");
+ };
+}
+
+document.getElementById("resetBtn").addEventListener("click",()=>{
+ if(confirm(isArabic()?"هل تريد مسح تقدمك المحلي؟":"Reset local learning progress?")){
+  state.completed=[];
+  saveState();
+  render();
+ }
+});
+
+/* ==================================
+   10. APPLICATION INITIALIZATION
+================================== */
+
+document.getElementById("langBtn").textContent=
+ state.language==="ar"?"English":"العربية";
+
+render();
+
+console.info(
+ APP.name+" v"+APP.version+" initialized successfully."
+);
+</script>
+</body>
+</html>
